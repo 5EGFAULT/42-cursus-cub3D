@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 15:00:22 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/25 18:50:58 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/25 19:01:44 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,36 +25,20 @@ void	parse_conf(char	*file, t_cub *cub)
 	if (fd == -1)
 		exit(1);
 	line = skip_empty_lines(fd);
-	while (line && i < 6)
+	while (line && i++ < 6)
 	{
 		line[ft_strlen(line) - 1] = '\0';
 		pair[0] = get_key(line);
 		if (pair[0][0] == '1' || pair[0][0] == '0')
 			break ;
 		pair[1] = get_value(line, ft_strlen(pair[0]));
-		i++;
-		printf("key={%s}\t\t", pair[0]);
-		printf("value=|%s|\n", pair[1]);
 		set_conf_value(cub, pair[0], pair[1]);
 		free(line);
 		line = skip_empty_lines(fd);
 	}
 	close(fd);
+	free(line);
 	check_conf(cub);
-	(void)cub;
-}
-
-char	*skip_empty_lines(int fd)
-{
-	char	*line;
-
-	line = get_next_line(fd);
-	while (line && (ft_strlen(line) == 0 || *line == '\n'))
-	{
-		free(line);
-		line = get_next_line(fd);
-	}
-	return (line);
 }
 
 char	*get_key(char *line)
@@ -119,6 +103,8 @@ void	set_conf_value(t_cub *cub, char	*key, char *value)
 		write(2, "\n\033[0m", 6);
 		exit(2);
 	}
+	free(key);
+	free(value);
 }
 
 char	**get_conf_dest(t_cub *cub, char *key)
@@ -137,29 +123,4 @@ char	**get_conf_dest(t_cub *cub, char *key)
 		return (&cub->c);
 	else
 		return (NULL);
-}
-
-void	check_conf(t_cub *cub)
-{
-	int	error;
-
-	error = 0;
-	if (!cub->no || !cub->so || !cub->we || !cub->ea || !cub->f || !cub->c)
-	{
-		write(2, "\033[31mError: Missing required key : ", 36);
-		if (!cub->no)
-			write(2, " NO ", 5);
-		if (!cub->so)
-			write(2, " SO ", 5);
-		if (!cub->we)
-			write(2, " WE ", 5);
-		if (!cub->ea)
-			write(2, " EA ", 5);
-		if (!cub->f)
-			write(2, " F ", 4);
-		if (!cub->c)
-			write(2, " C ", 4);
-		write(2, "\n\033[0m\n", 7);
-		exit(2);
-	}
 }

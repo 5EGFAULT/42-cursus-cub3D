@@ -18,7 +18,8 @@ GNL			:= src/get_next_line/get_next_line_utils.c \
 				src/get_next_line/get_next_line.c
 PARSER		:= src/parser/parser.c \
 				src/parser/validator.c \
-				src/parser/parser_conf.c 
+				src/parser/parser_conf.c \
+				src/parser/parser_utils.c 
 UTILS		:= src/utils/str_utils0.c \
 				src/utils/str_utils1.c
 
@@ -28,7 +29,7 @@ OBJ			:= $(patsubst %.c, %.o, $(GNL)) \
 			src/cub3D.o
 
 CC			:= cc
-FLAGS		:= -Wall -Wextra -Werror -fsanitize=address -g
+FLAGS		:= -Wall -Wextra -Werror
 .PHONY: all clean fclean re bonus
 
 all: $(NAME)

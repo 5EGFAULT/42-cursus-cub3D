@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:50:14 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/25 15:52:56 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/25 18:57:10 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ t_cub	*init_cub(void)
 }
 
 /**
- * @brief      Main parsing function Parse the cub file and return a pointer to a t_cub struct
+ * @brief      Main parsing function Parse 
+ * 			the cub file and return a pointer to a t_cub struct
  * @param      file The cub file		
 */
 t_cub	*parse_cub(char *file)
