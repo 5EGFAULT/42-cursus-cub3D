@@ -6,11 +6,12 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:50:14 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/25 18:57:10 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/25 21:55:09 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parser.h"
+#include "../../inc/validator.h"
 
 t_cub	*init_cub(void)
 {
@@ -32,8 +33,8 @@ t_cub	*init_cub(void)
 }
 
 /**
- * @brief      Main parsing function Parse 
- * 			the cub file and return a pointer to a t_cub struct
+ * @brief      	Main parsing function Parse 
+ * 				the cub file and return a pointer to a t_cub struct
  * @param      file The cub file		
 */
 t_cub	*parse_cub(char *file)
@@ -45,5 +46,6 @@ t_cub	*parse_cub(char *file)
 	if (!cub)
 		return (NULL);
 	parse_conf(file, cub);
+	parse_map(file, cub);
 	return (cub);
 }

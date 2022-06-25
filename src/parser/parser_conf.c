@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 15:00:22 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/25 19:01:44 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/25 19:51:21 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	parse_conf(char	*file, t_cub *cub)
 	{
 		line[ft_strlen(line) - 1] = '\0';
 		pair[0] = get_key(line);
-		if (pair[0][0] == '1' || pair[0][0] == '0')
+		if (pair[0][0] == '1')
 			break ;
 		pair[1] = get_value(line, ft_strlen(pair[0]));
 		set_conf_value(cub, pair[0], pair[1]);

@@ -17,19 +17,23 @@ NAME		:= cub3D
 GNL			:= src/get_next_line/get_next_line_utils.c \
 				src/get_next_line/get_next_line.c
 PARSER		:= src/parser/parser.c \
-				src/parser/validator.c \
 				src/parser/parser_conf.c \
+				src/parser/parser_map.c \
 				src/parser/parser_utils.c 
+VALIDATOR	:= src/validator/validator.c \
+				src/validator/validator_map.c 
+
 UTILS		:= src/utils/str_utils0.c \
 				src/utils/str_utils1.c
 
 OBJ			:= $(patsubst %.c, %.o, $(GNL)) \
 			$(patsubst %.c, %.o, $(PARSER)) \
 			$(patsubst %.c, %.o, $(UTILS)) \
+			$(patsubst %.c, %.o, $(VALIDATOR)) \
 			src/cub3D.o
 
 CC			:= cc
-FLAGS		:= -Wall -Wextra -Werror
+FLAGS		:= -Wall -Wextra -Werror -fsanitize=address -g
 .PHONY: all clean fclean re bonus
 
 all: $(NAME)

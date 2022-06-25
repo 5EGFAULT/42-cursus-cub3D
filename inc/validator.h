@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   validator.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 12:41:22 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/25 22:07:22 by asouinia         ###   ########.fr       */
+/*   Created: 2022/06/25 21:54:03 by asouinia          #+#    #+#             */
+/*   Updated: 2022/06/25 22:16:25 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/parser.h"
-#include "../inc/validator.h"
+#ifndef VALIDATOR_H
+# define VALIDATOR_H
+# include <fcntl.h>
+# include <errno.h>
+# include "cub3D.h"
 
-int	main(int argc, char **argv)
-{
-	t_cub	*cub;
+void	validate_file_name(char *file);
+void	validate_cub(t_cub *cub);
+void	validator_obj(t_cub *cub);
+void	validator_player(t_cub *cub);
 
-	if (argc != 2)
-		return (printf("Usage: ./cub3D <cubfile>\n"), 1);
-	cub = parse_cub(argv[1]);
-	validate_cub(cub);
-	if (!cub)
-		return (0);
-	return (0);
-}
+#endif

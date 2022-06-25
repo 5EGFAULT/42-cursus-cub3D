@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 18:55:50 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/25 18:56:58 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/25 19:48:15 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	check_conf(t_cub *cub)
 	error = 0;
 	if (!cub->no || !cub->so || !cub->we || !cub->ea || !cub->f || !cub->c)
 	{
-		write(2, "\033[31mError: Missing required key : ", 36);
+		write(2, "\033[31mError: Missing required key : \033[33m", 41);
 		if (!cub->no)
 			write(2, " NO ", 5);
 		if (!cub->so)
