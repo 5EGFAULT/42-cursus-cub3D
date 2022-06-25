@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 22:00:19 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 00:13:24 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 00:50:08 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,13 @@ void	validator_closed(t_cub *cub)
 		{
 			if (cub->map[i][j] == ' ')
 			{
-				if (j > 0 && cub->map[i][j - 1] == '0')
+				if (j > 0 && ft_strchr("0NWES",cub->map[i][j - 1]))
 					error++;
-				if (j < cub->map_width - 1 && cub->map[i][j + 1] == '0')
+				if (j < cub->map_width - 1 && ft_strchr("0NWES",cub->map[i][j + 1]))
 					error++;
-				if (i > 0 && cub->map[i - 1][j] == '0')
+				if (i > 0 && ft_strchr("0NWES",cub->map[i - 1][j]))
 					error++;
-				if (i < cub->map_height - 1 && cub->map[i + 1][j] == '0')
+				if (i < cub->map_height - 1 && ft_strchr("0NWES",cub->map[i + 1][j]))
 					error++;
 				if (error)
 				{
