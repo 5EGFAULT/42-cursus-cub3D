@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_utils.c                                        :+:      :+:    :+:   */
+/*   str_utils0.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:31:32 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/25 13:53:43 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/25 16:26:33 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*ft_strrchr(const char *s, int c)
 	return (NULL);
 }
 
-int	ft_strlen(char *str)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
@@ -65,7 +65,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	i = 0;
 	if (!n)
 		return (0);
-	while (s1[i] != '\0' && s2[i] != '\0' && i < n)
+	while (s1 && s2 && s1[i] != '\0' && s2[i] != '\0' && i < n)
 	{
 		if ((unsigned char)s1[i] != (unsigned char)s2[i])
 			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
@@ -74,4 +74,23 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	if (i == n)
 		return ((unsigned char)s1[i - 1] - (unsigned char)s2[i - 1]);
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+char	*strappend(char *s, char c)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = (char *)malloc(sizeof(char) * (ft_strlen(s) + 2));
+	if (!tmp)
+		return (NULL);
+	while (s && s[i])
+	{
+		tmp[i] = s[i];
+		i++;
+	}
+	tmp[i] = c;
+	tmp[i + 1] = '\0';
+	return (free(s), tmp);
 }

@@ -1,5 +1,6 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/asouinia/Desktop/42-cursus-cub3D'
 make: Nothing to be done for `all'.
+ 
 make: Leaving directory `/Users/asouinia/Desktop/42-cursus-cub3D'
  

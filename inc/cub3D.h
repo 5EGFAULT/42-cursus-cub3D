@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:42:54 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/25 13:39:35 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/25 15:52:32 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ typedef struct s_cub
 	char	*so;
 	char	*we;
 	char	*ea;
-	char	*f_texture;
-	char	*c_texture;
+	char	*f;
+	char	*c;
 	int		f_color;
 	int		c_color;
 	char	**map;

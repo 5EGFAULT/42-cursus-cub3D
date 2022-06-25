@@ -1,4 +1,3 @@
-	
 #                                    	.--,-``-.                  
 #	  ,----..                  ,---,.  /   /     '.      ,---,     
 #	 /   /   \         ,--,  ,'  .'  \/ ../        ;   .'  .' `\   
@@ -14,16 +13,20 @@
 #	 \   \ .' :  ,      .-./   | ,'    \   \     .'  |   ,.'       
 #	  `---`    `--`----'   `----'       `--`-,,-'    '---'         
 	
-
 NAME		:= cub3D
-GNL			:= src/get_next_line/get_next_line_utils.c src/get_next_line/get_next_line.c
-PARSER		:= src/parser/parser.c src/parser/validator.c
-UTILS		:= src/utils/str_utils.c
+GNL			:= src/get_next_line/get_next_line_utils.c \
+				src/get_next_line/get_next_line.c
+PARSER		:= src/parser/parser.c \
+				src/parser/validator.c \
+				src/parser/parser_conf.c 
+UTILS		:= src/utils/str_utils0.c \
+				src/utils/str_utils1.c
 
 OBJ			:= $(patsubst %.c, %.o, $(GNL)) \
 			$(patsubst %.c, %.o, $(PARSER)) \
 			$(patsubst %.c, %.o, $(UTILS)) \
 			src/cub3D.o
+
 CC			:= cc
 FLAGS		:= -Wall -Wextra -Werror -fsanitize=address -g
 .PHONY: all clean fclean re bonus
@@ -46,7 +49,6 @@ fclean: clean
 re: fclean all
 
 t: file_extension
-
 
 #		______________________ _____________________________
 #		\__    ___/\_   _____//   _____/\__    ___/   _____/
