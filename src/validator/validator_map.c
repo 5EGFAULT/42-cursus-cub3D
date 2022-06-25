@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 22:00:19 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/25 22:31:06 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 00:13:24 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,38 @@ initial position\n\033[0m", 48);
 	{
 		write(2, "\033[31mError: No player initial position found\n\033[0m", 50);
 		exit(2);
+	}
+}
+
+void	validator_closed(t_cub *cub)
+{
+	int	i;
+	int	j;
+	int	error;
+
+	i = -1;
+	while (++i < cub->map_height)
+	{
+		j = -1;
+		error = 0;
+		while (++j < cub->map_width)
+		{
+			if (cub->map[i][j] == ' ')
+			{
+				if (j > 0 && cub->map[i][j - 1] == '0')
+					error++;
+				if (j < cub->map_width - 1 && cub->map[i][j + 1] == '0')
+					error++;
+				if (i > 0 && cub->map[i - 1][j] == '0')
+					error++;
+				if (i < cub->map_height - 1 && cub->map[i + 1][j] == '0')
+					error++;
+				if (error)
+				{
+					write(2, "\033[31mError: Map not closed\n\033[0m", 32);
+					exit(2);
+				}
+			}
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 19:49:04 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/25 22:34:38 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 00:32:22 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	parse_map(char	*file, t_cub *cub)
 	if (fd == -1)
 		exit(1);
 	count_map_lines(cub, fd);
-	cub->map = (char **)malloc(sizeof(char *) * cub->map_height);
+	cub->map = (char **)malloc(sizeof(char *) * (cub->map_height + 2));
 	if (!cub->map)
 		exit(3);
 	close(fd);
@@ -77,10 +77,10 @@ void	fill_map(char	*file, t_cub *cub)
 		line = skip_empty_lines(fd);
 		free(line);
 	}
-	cub->map[0] = skip_empty_lines(fd);
-	cub->map_width = ft_strlen(cub->map[0]);
-	i = 0;
-	while (++i < cub->map_height)
+	cub->map[1] = skip_empty_lines(fd);
+	cub->map_width = ft_strlen(cub->map[1]);
+	i = 1;
+	while (++i <= cub->map_height)
 	{
 		cub->map[i] = get_next_line(fd);
 		if (cub->map_width < ft_strlen(cub->map[i]))
@@ -99,23 +99,32 @@ void	refill_map(t_cub *cub)
 	int		j;
 	char	*line;
 
-	i = -1;
-	while (++i < cub->map_height)
+	i = 0;
+	while (++i <= cub->map_height)
 	{
 		j = -1;
-		line = malloc(sizeof(char) * cub->map_width + 1);
-		while (++j < cub->map_width - 1)
+		line = malloc(sizeof(char) * cub->map_width + 2);
+		line[0] = ' ';
+		while (++j < cub->map_width)
 		{
-			if (j < ft_strlen(cub->map[i]) - 1 && cub->map[i][j] != '\n')
-				line[j] = cub->map[i][j];
+			if (j < ft_strlen(cub->map[i]) && cub->map[i][j] != '\n')
+				line[j + 1] = cub->map[i][j];
 			else
-				//line[j] = '*';
-				line[j] = ' ';
-			printf("%c", cub->map[i][j]);
+				line[j + 1] = ' ';
 		}
-		printf("\n%s\n\n", cub->map[i]);
-		line[j] = '\0';
+		line[j + 1] = '\0';
 		free(cub->map[i]);
 		cub->map[i] = line;
 	}
+	cub->map_width += 1;
+	cub->map_height += 2;
+	line = malloc(sizeof(char) * cub->map_width + 2);
+	j = -1;
+	while (++j < cub->map_width)
+	{
+		line[j]= ' ';
+	}
+	line[j] = '\0';
+	cub->map[0] = line;
+	cub->map[cub->map_height - 1] = ft_substr(line, NULL);
 }

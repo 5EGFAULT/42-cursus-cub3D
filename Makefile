@@ -33,7 +33,7 @@ OBJ			:= $(patsubst %.c, %.o, $(GNL)) \
 			src/cub3D.o
 
 CC			:= cc
-FLAGS		:= -Wall -Wextra -Werror -fsanitize=address -g
+FLAGS		:= -Wall -Wextra -Werror -g #-fsanitize=address 
 .PHONY: all clean fclean re bonus
 
 all: $(NAME)
