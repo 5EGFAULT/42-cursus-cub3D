@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 19:49:04 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 14:49:50 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 15:20:22 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	parse_map(char	*file, t_cub *cub)
 	i = -1;
 	while (++i < cub->map_height)
 	{
-		printf("%s\n", cub->map[i]);
+		//printf("%s\n", cub->map[i]);
 	}
 }
 

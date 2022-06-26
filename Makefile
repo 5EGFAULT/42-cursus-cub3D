@@ -21,7 +21,8 @@ PARSER		:= src/parser/parser.c \
 				src/parser/parser_map.c \
 				src/parser/parser_utils.c 
 VALIDATOR	:= src/validator/validator.c \
-				src/validator/validator_map.c 
+				src/validator/validator_map.c \
+				src/validator/validator_file.c
 
 UTILS		:= src/utils/str_utils0.c \
 				src/utils/str_utils1.c \

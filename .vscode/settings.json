@@ -2,6 +2,7 @@
 	"makefile.extensionOutputFolder": "./.vscode",
 	"files.associations": {
 		"parser.h": "c",
-		"errno.h": "c"
+		"errno.h": "c",
+		"get_next_line.h": "c"
 	}
 }

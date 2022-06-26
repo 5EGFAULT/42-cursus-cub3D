@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:41:22 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 14:42:23 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 15:17:54 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int	main(int argc, char **argv)
 	validate_cub(cub);
 	if (!cub)
 		return (0);
-	system("leaks cub3D");
+	//system("leaks cub3D");
 	return (0);
 }

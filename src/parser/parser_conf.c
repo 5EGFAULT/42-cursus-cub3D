@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 15:00:22 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 14:48:16 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 15:24:26 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	parse_conf(char	*file, t_cub *cub)
 		free(line);
 		line = skip_empty_lines(fd);
 	}
-	return (free(line), close(fd), check_conf(cub));
+	return (free(line), close(fd), check_conf(cub), parser_color(cub));
 }
 
 char	*get_key(char *line)

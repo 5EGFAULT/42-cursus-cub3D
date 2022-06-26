@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 21:54:03 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 00:07:38 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 15:16:08 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ void	validate_cub(t_cub *cub);
 void	validator_obj(t_cub *cub);
 void	validator_player(t_cub *cub);
 void	validator_closed(t_cub *cub);
+void	validator_file(char *file);
 
 #endif

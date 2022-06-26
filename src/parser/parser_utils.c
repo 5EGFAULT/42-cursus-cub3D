@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 18:55:50 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/25 19:48:15 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 15:48:42 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,37 @@ void	check_conf(t_cub *cub)
 		write(2, "\n\033[0m\n", 7);
 		exit(2);
 	}
+}
+
+char	*get_color_value(char *str, int *idx)
+{
+	int len;
+
+	str += *idx;
+	while (*str && (*str == ',' || *str == ' ' || *str == '\t'))
+		str++;
+	len = 0;
+	while (str && str[*idx])
+	{
+		if (str[*idx] < '0' || str[*idx] > '9')
+			return (NULL);
+		*idx += 1;
+		len++;
+	}
+	if (len > 3 || len < 1)
+		return (NULL);
+	return (ft_substr(str, str + *idx));
+}
+
+void	parser_color(t_cub *cub)
+{
+	int		i;
+	int		rgb[3];
+	char	*line;
+
+	(void)rgb;
+	(void)cub;
+	i = 0;
+	line = get_color_value(cub->c, &i);
+	printf("{%s}=>%s\n", cub->c,line);
 }
