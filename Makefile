@@ -30,19 +30,23 @@ UTILS		:= src/utils/str_utils0.c \
 				src/utils/str_utils2.c \
 				src/utils/print_utils0.c 
 
+GAME		:= src/game/game.c \
+				src/game/init_game.c 
+
 OBJ			:= $(patsubst %.c, %.o, $(GNL)) \
 			$(patsubst %.c, %.o, $(PARSER)) \
 			$(patsubst %.c, %.o, $(UTILS)) \
 			$(patsubst %.c, %.o, $(VALIDATOR)) \
+			$(patsubst %.c, %.o, $(GAME)) \
 			src/cub3D.o
 
 CC			:= cc
-FLAGS		:= -Wall -Wextra -Werror -g #-fsanitize=address 
+FLAGS		:= -Wall -Wextra -Werror -Imlx -g -fsanitize=address 
 .PHONY: all clean fclean re bonus
 
 all: $(NAME)
 $(NAME): $(OBJ)
-	@$(CC)  $(FLAGS)  $(OBJ) -o $(NAME) 
+	@$(CC)  $(FLAGS)  -lmlx -framework OpenGL -framework AppKit  $(OBJ) -o $(NAME) 
 %.o: %.c
 	@$(CC) $(FLAGS) -c $<  -o $@
 

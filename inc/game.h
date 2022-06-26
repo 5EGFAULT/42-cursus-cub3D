@@ -1,41 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 12:42:54 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 21:31:22 by asouinia         ###   ########.fr       */
+/*   Created: 2022/06/26 20:28:30 by asouinia          #+#    #+#             */
+/*   Updated: 2022/06/26 21:28:46 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-# include <stdio.h>
+#ifndef GAME_H
+# define GAME_H
+# include <stdlib.h>
+# include <mlx.h>
+# include <math.h>
+# include "cub3D.h"
+# include "utils.h"
 
-# ifndef WIN_H
-#  define WIN_H 1024
-# endif
-# ifndef WIN_W
-#  define WIN_W 1980
-# endif
-
-typedef struct s_cub
+typedef struct s_game
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	char	*f;
-	char	*c;
-	int		f_color;
-	int		c_color;
+	void	*mlx;
+	void	*win;
+	void	*ea;
+	void	*we;
+	void	*no;
+	void	*so;
+	void	*f_texture;
+	void	*c_texture;
+	int		f;
+	int		c;
 	char	**map;
 	int		map_height;
 	int		map_width;
 	int		pos[2];
-	char	dir;
-}t_cub;
+	int		dir[2];
+}t_game;
+
+void	run_game(t_cub *cub);
+
+
+t_game	*init_game(t_cub *cub);
+void	load_mlx(t_game *game, t_cub *cub);
 
 #endif

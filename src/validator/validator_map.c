@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 22:00:19 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 14:58:20 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 20:44:34 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ void	validator_obj(t_cub *cub)
 	}
 }
 
+static int	set_init_pos(t_cub *cub, int i, int j)
+{
+	cub->pos[0] = i;
+	cub->pos[1] = j;
+	cub->dir = cub->map[i][j];
+	return (1);
+}
+
 void	validator_player(t_cub *cub)
 {
 	int	i;
@@ -50,7 +58,7 @@ void	validator_player(t_cub *cub)
 		{
 			if (cub->map[i][j] && ft_strchr("NSWE", cub->map[i][j]))
 			{
-				if (++found > 1)
+				if (set_init_pos(cub, i, j) && ++found > 1)
 				{
 					write(2, "\033[31mError: Double player \
 initial position\n\033[0m", 48);

@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 21:53:48 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 15:17:16 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 20:07:40 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,20 @@ void	validate_file_name(char *file)
 
 void	validate_cub(t_cub *cub)
 {
+	validate_conf_files(cub);
 	validator_obj(cub);
 	validator_closed(cub);
 	validator_player(cub);
+}
+
+void	validate_conf_files(t_cub *cub)
+{
+	validator_file(cub->no);
+	validator_file(cub->so);
+	validator_file(cub->we);
+	validator_file(cub->ea);
+	if (cub->c_color < 0)
+		validator_file(cub->c);
+	if (cub->f_color < 0)
+		validator_file(cub->f);
 }
