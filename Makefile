@@ -24,7 +24,8 @@ VALIDATOR	:= src/validator/validator.c \
 				src/validator/validator_map.c 
 
 UTILS		:= src/utils/str_utils0.c \
-				src/utils/str_utils1.c
+				src/utils/str_utils1.c \
+				src/utils/str_utils2.c 
 
 OBJ			:= $(patsubst %.c, %.o, $(GNL)) \
 			$(patsubst %.c, %.o, $(PARSER)) \

@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 22:00:19 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 00:50:08 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 14:58:20 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void	validator_player(t_cub *cub)
 		{
 			if (cub->map[i][j] && ft_strchr("NSWE", cub->map[i][j]))
 			{
-				found++;
-				if (found > 1)
+				if (++found > 1)
 				{
 					write(2, "\033[31mError: Double player \
 initial position\n\033[0m", 48);
@@ -60,10 +59,32 @@ initial position\n\033[0m", 48);
 			}
 		}
 	}
-	if (!found)
+	if (found)
+		return ;
+	write(2, "\033[31mError: No player initial position found\n\033[0m", 50);
+	exit(2);
+}
+
+static void	validator_closed_part(t_cub *cub, int i, int j)
+{
+	int	error;
+
+	error = 0;
+	if (cub->map[i][j] == ' ')
 	{
-		write(2, "\033[31mError: No player initial position found\n\033[0m", 50);
-		exit(2);
+		if (j > 0)
+			(ft_strchr("0NWES", cub->map[i][j - 1])) && error++;
+		if (j < cub->map_width - 1)
+			(ft_strchr("0NWES", cub->map[i][j + 1])) && error++;
+		if (i > 0)
+			(ft_strchr("0NWES", cub->map[i - 1][j])) && error++;
+		if (i < cub->map_height - 1)
+			(ft_strchr("0NWES", cub->map[i + 1][j])) && error++;
+		if (error)
+		{
+			write(2, "\033[31mError: Map not closed\n\033[0m", 32);
+			exit(2);
+		}
 	}
 }
 
@@ -71,31 +92,14 @@ void	validator_closed(t_cub *cub)
 {
 	int	i;
 	int	j;
-	int	error;
 
 	i = -1;
 	while (++i < cub->map_height)
 	{
 		j = -1;
-		error = 0;
 		while (++j < cub->map_width)
 		{
-			if (cub->map[i][j] == ' ')
-			{
-				if (j > 0 && ft_strchr("0NWES",cub->map[i][j - 1]))
-					error++;
-				if (j < cub->map_width - 1 && ft_strchr("0NWES",cub->map[i][j + 1]))
-					error++;
-				if (i > 0 && ft_strchr("0NWES",cub->map[i - 1][j]))
-					error++;
-				if (i < cub->map_height - 1 && ft_strchr("0NWES",cub->map[i + 1][j]))
-					error++;
-				if (error)
-				{
-					write(2, "\033[31mError: Map not closed\n\033[0m", 32);
-					exit(2);
-				}
-			}
+			validator_closed_part(cub, i, j);
 		}
 	}
 }

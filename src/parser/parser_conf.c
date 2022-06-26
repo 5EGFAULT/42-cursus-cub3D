@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 15:00:22 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/25 19:51:21 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 14:48:16 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	parse_conf(char	*file, t_cub *cub)
 	int		fd;
 	int		i;
 	char	*line;
-	char	*pair[2];
+	char	*pair[3];
 
 	i = 0;
 	fd = open(file, O_RDONLY);
@@ -32,13 +32,13 @@ void	parse_conf(char	*file, t_cub *cub)
 		if (pair[0][0] == '1')
 			break ;
 		pair[1] = get_value(line, ft_strlen(pair[0]));
-		set_conf_value(cub, pair[0], pair[1]);
+		pair[2] = ft_strtrim(pair[1], " \t");
+		free(pair[1]);
+		set_conf_value(cub, pair[0], pair[2]);
 		free(line);
 		line = skip_empty_lines(fd);
 	}
-	close(fd);
-	free(line);
-	check_conf(cub);
+	return (free(line), close(fd), check_conf(cub));
 }
 
 char	*get_key(char *line)

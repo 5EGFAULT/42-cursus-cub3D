@@ -6,20 +6,19 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
 
-# Make data base, printed on Sun Jun 26 00:32:44 2022
+# Make data base, printed on Sun Jun 26 14:33:31 2022
 
 # Variables
 
 # makefile (from `Makefile', line 26)
-UTILS := src/utils/str_utils0.c src/utils/str_utils1.c
+UTILS := src/utils/str_utils0.c src/utils/str_utils1.c src/utils/str_utils2.c 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
-# makefile (from `Makefile', line 29)
-OBJ :=  src/get_next_line/get_next_line_utils.o  src/get_next_line/get_next_line.o  src/parser/parser.o  src/parser/parser_conf.o  src/parser/parser_map.o  src/parser/parser_utils.o  src/utils/str_utils0.o  src/utils/str_utils1.o  src/validator/validator.o  src/validator/validator_map.o src/cub3D.o
+# makefile (from `Makefile', line 30)
+OBJ :=  src/get_next_line/get_next_line_utils.o  src/get_next_line/get_next_line.o  src/parser/parser.o  src/parser/parser_conf.o  src/parser/parser_map.o  src/parser/parser_utils.o  src/utils/str_utils0.o  src/utils/str_utils1.o  src/utils/str_utils2.o  src/validator/validator.o  src/validator/validator_map.o src/cub3D.o
 # environment
 VSCODE_LOG_NATIVE = false
 # automatic
@@ -41,13 +40,13 @@ MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n0000jyr0004gp/T/vscode-ipc-b228b8a9-3858-461e-80b7-5cd320a59b2b.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n0000jyr0004gp/T/vscode-ipc-1e2329ed-5bb3-42b0-adaa-4bab3a855945.sock
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.VCWkj49uS7/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.MM9MvFZ8yt/Render
 # environment
-PATH = /Users/asouinia/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/asouinia/goinfre/Web/node/bin:/Users/asouinia/goinfre/Web/npm-global/bin
+PATH = /Users/asouinia/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/asouinia/goinfre/Web/node/bin:/Users/asouinia/goinfre/Web/npm-global/bin
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
@@ -57,7 +56,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.mPngPR6HCf/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.UtrGxM0FE5/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -96,7 +95,7 @@ MAKECMDGOALS := all
 HOMEBREW_CACHE = /tmp/asouinia/Homebrew/Caches
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 35)
+# makefile (from `Makefile', line 36)
 CC := cc
 # default
 MAKE_VERSION := 3.81
@@ -127,7 +126,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.3540
+XPC_SERVICE_NAME = com.microsoft.VSCode.1208
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -150,7 +149,7 @@ LC_ALL = C
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
-# makefile (from `Makefile', line 36)
+# makefile (from `Makefile', line 37)
 FLAGS := -Wall -Wextra -Werror -g 
 # default
 .INCLUDE_DIRS = /usr/local/include
@@ -159,11 +158,11 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 12361
+VSCODE_PID = 4178
 # makefile (from `Makefile', line 19)
 PARSER := src/parser/parser.c src/parser/parser_conf.c src/parser/parser_map.c src/parser/parser_utils.c 
 # variable set hash-table stats:
-# Load=75/1024=7%, Rehash=0, Collisions=5/107=5%
+# Load=75/1024=7%, Rehash=0, Collisions=5/111=5%
 
 # Pattern-specific Variable Values
 
@@ -171,19 +170,17 @@ PARSER := src/parser/parser.c src/parser/parser_conf.c src/parser/parser_map.c s
 
 # Directories
 
-# . (device 16777227, inode 8046114): 10 files, no impossibilities.
-# src/utils (device 16777227, inode 8051469): 5 files, no impossibilities so far.
+# . (device 16777227, inode 8046114): 12 files, no impossibilities.
+# src/utils (device 16777227, inode 8051469): 7 files, no impossibilities so far.
 # src/get_next_line (device 16777227, inode 8048681): 5 files, no impossibilities so far.
-# src/validator (device 16777227, inode 8065354): 5 files, no impossibilities so far.
-# src (device 16777227, inode 8048667): 3 files, no impossibilities so far.
 # src/parser (device 16777227, inode 8046451): 9 files, no impossibilities so far.
 
-# 37 files, no impossibilities in 6 directories.
+# 33 files, no impossibilities in 4 directories.
 
 # Implicit Rules
 
 %.o: %.c
-#  commands to execute (from `Makefile', line 43):
+#  commands to execute (from `Makefile', line 44):
 	@$(CC) $(FLAGS) -c $<  -o $@
 	
 
@@ -191,24 +188,15 @@ PARSER := src/parser/parser.c src/parser/parser_conf.c src/parser/parser_map.c s
 
 # Files
 
-# Not a target:
-src/validator/validator_map.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-06-26 00:13:24
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
 src/utils/str_utils1.o: src/utils/str_utils1.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/utils/str_utils1'
-#  Last modified 2022-06-26 00:32:38
+#  Last modified 2022-06-26 14:31:34
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 43):
+#  commands to execute (from `Makefile', line 44):
 	@$(CC) $(FLAGS) -c $<  -o $@
 	
 
@@ -218,19 +206,20 @@ all: cub3D
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/4=0%
 
 src/parser/parser_conf.o: src/parser/parser_conf.c
+ 
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/parser/parser_conf'
-#  Last modified 2022-06-26 00:32:38
+#  Last modified 2022-06-26 14:31:34
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 43):
+#  commands to execute (from `Makefile', line 44):
 	@$(CC) $(FLAGS) -c $<  -o $@
 	
 
@@ -247,12 +236,12 @@ t: print_test file_extension
 src/parser/parser_utils.o: src/parser/parser_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/parser/parser_utils'
-#  Last modified 2022-06-26 00:32:38
+#  Last modified 2022-06-26 14:31:34
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 43):
+#  commands to execute (from `Makefile', line 44):
 	@$(CC) $(FLAGS) -c $<  -o $@
 	
 
@@ -274,15 +263,14 @@ src/parser/parser_map.c:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
- 
-cub3D: src/get_next_line/get_next_line_utils.o src/get_next_line/get_next_line.o src/parser/parser.o src/parser/parser_conf.o src/parser/parser_map.o src/parser/parser_utils.o src/utils/str_utils0.o src/utils/str_utils1.o src/validator/validator.o src/validator/validator_map.o src/cub3D.o
+cub3D: src/get_next_line/get_next_line_utils.o src/get_next_line/get_next_line.o src/parser/parser.o src/parser/parser_conf.o src/parser/parser_map.o src/parser/parser_utils.o src/utils/str_utils0.o src/utils/str_utils1.o src/utils/str_utils2.o src/validator/validator.o src/validator/validator_map.o src/cub3D.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-26 00:32:38
+#  Last modified 2022-06-26 14:31:44
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 41):
+# Load=0/32=0%, Rehash=0, Collisions=0/4=0%
+#  commands to execute (from `Makefile', line 42):
 	@$(CC)  $(FLAGS)  $(OBJ) -o $(NAME) 
 	
 
@@ -293,22 +281,41 @@ cub3D: src/get_next_line/get_next_line_utils.o src/get_next_line/get_next_line.o
 #  File has not been updated.
 
 # Not a target:
-src/cub3D.c:
+Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-25 22:07:22
+#  Last modified 2022-06-26 14:33:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-# Not a target:
-Makefile:
+src/utils/str_utils2.o: src/utils/str_utils2.c
 #  Implicit rule search has been done.
-#  Last modified 2022-06-26 00:32:36
+#  Implicit/static pattern stem: `src/utils/str_utils2'
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := src/utils/str_utils2.o
+# automatic
+# % := 
+# automatic
+# * := src/utils/str_utils2
+# automatic
+# + := src/utils/str_utils2.c
+# automatic
+# | := 
+# automatic
+# < := src/utils/str_utils2.c
+# automatic
+# ^ := src/utils/str_utils2.c
+# automatic
+# ? := src/utils/str_utils2.c
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Load=8/32=25%, Rehash=0, Collisions=1/14=7%
+#  commands to execute (from `Makefile', line 44):
+	@$(CC) $(FLAGS) -c $<  -o $@
+	
 
 # Not a target:
 src/utils/str_utils0.c:
@@ -319,17 +326,11 @@ src/utils/str_utils0.c:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-src/validator/validator.o: src/validator/validator.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `src/validator/validator'
-#  Last modified 2022-06-26 00:32:38
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 43):
-	@$(CC) $(FLAGS) -c $<  -o $@
-	
+# Not a target:
+src/validator/validator.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/utils/str_utils1.c:
@@ -343,19 +344,19 @@ src/utils/str_utils1.c:
 src/get_next_line/get_next_line_utils.o: src/get_next_line/get_next_line_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/get_next_line/get_next_line_utils'
-#  Last modified 2022-06-26 00:32:37
+#  Last modified 2022-06-26 14:31:33
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 43):
+#  commands to execute (from `Makefile', line 44):
 	@$(CC) $(FLAGS) -c $<  -o $@
 	
 
 # Not a target:
 src/parser/parser_conf.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-25 19:51:21
+#  Last modified 2022-06-26 14:31:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -366,8 +367,7 @@ bonus:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 46):
- 
+#  commands to execute (from `Makefile', line 47):
 	@echo bonus
 	
 
@@ -376,7 +376,7 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 52):
+#  commands to execute (from `Makefile', line 53):
 	@rm -f $(NAME)
 	
 
@@ -392,12 +392,12 @@ src/parser/parser_utils.c:
 src/parser/parser.o: src/parser/parser.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/parser/parser'
-#  Last modified 2022-06-26 00:32:38
+#  Last modified 2022-06-26 14:31:33
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 43):
+#  commands to execute (from `Makefile', line 44):
 	@$(CC) $(FLAGS) -c $<  -o $@
 	
 
@@ -405,7 +405,7 @@ file_extension: cub3D
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@echo "\033[92m Test File Extension\033[0m"
 	@./$(NAME) maps/t.cub	|| true	
 	@./$(NAME) maps/t.cubb	|| true	
@@ -421,41 +421,35 @@ file_extension: cub3D
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+src/utils/str_utils2.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-26 14:33:13
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
 
-src/validator/validator_map.o: src/validator/validator_map.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `src/validator/validator_map'
-#  Last modified 2022-06-26 00:32:38
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 43):
-	@$(CC) $(FLAGS) -c $<  -o $@
-	
+# Not a target:
+src/validator/validator_map.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 clean:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 49):
+#  commands to execute (from `Makefile', line 50):
 	@rm -f $(OBJ)
 	
-
-# Not a target:
-src/validator/validator.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-06-26 00:07:09
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/get_next_line/get_next_line_utils.c:
@@ -469,29 +463,30 @@ src/get_next_line/get_next_line_utils.c:
 src/get_next_line/get_next_line.o: src/get_next_line/get_next_line.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/get_next_line/get_next_line'
-#  Last modified 2022-06-26 00:32:37
+#  Last modified 2022-06-26 14:31:33
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 43):
+#  commands to execute (from `Makefile', line 44):
 	@$(CC) $(FLAGS) -c $<  -o $@
 	
 
 src/parser/parser_map.o: src/parser/parser_map.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/parser/parser_map'
-#  Last modified 2022-06-26 00:32:38
+#  Last modified 2022-06-26 14:31:34
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 43):
+#  commands to execute (from `Makefile', line 44):
 	@$(CC) $(FLAGS) -c $<  -o $@
 	
 
 # Not a target:
 src/parser/parser.c:
+ 
 #  Implicit rule search has been done.
 #  Last modified 2022-06-25 21:55:09
 #  File has been updated.
@@ -499,27 +494,21 @@ src/parser/parser.c:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-src/cub3D.o: src/cub3D.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `src/cub3D'
-#  Last modified 2022-06-26 00:32:38
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 43):
-	@$(CC) $(FLAGS) -c $<  -o $@
-	
+# Not a target:
+src/cub3D.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 src/utils/str_utils0.o: src/utils/str_utils0.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/utils/str_utils0'
-#  Last modified 2022-06-26 00:32:38
+#  Last modified 2022-06-26 14:31:34
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 43):
+#  commands to execute (from `Makefile', line 44):
 	@$(CC) $(FLAGS) -c $<  -o $@
 	
 
@@ -527,7 +516,7 @@ print_test:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 65):
+#  commands to execute (from `Makefile', line 66):
 	@echo "\033[36m████████ ███████ ███████ ████████ ███████ \033[0m"
 	@echo "\033[36m   ██    ██      ██         ██    ██      \033[0m"
 	@echo "\033[36m   ██    █████   ███████    ██    ███████ \033[0m"
@@ -536,7 +525,7 @@ print_test:
 	
 
 # files hash-table stats:
-# Load=35/1024=3%, Rehash=0, Collisions=0/104=0%
+# Load=34/1024=3%, Rehash=0, Collisions=0/98=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -548,6 +537,6 @@ print_test:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Jun 26 00:32:44 2022
+# Finished Make data base on Sun Jun 26 14:33:31 2022
 
  

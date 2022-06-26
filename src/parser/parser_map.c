@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 19:49:04 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 00:32:22 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 14:49:50 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	parse_map(char	*file, t_cub *cub)
 	if (!cub->map)
 		exit(3);
 	close(fd);
-	fill_map(file, cub);
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		exit(1);
+	fill_map(cub, fd);
 	refill_map(cub);
 	i = -1;
 	while (++i < cub->map_height)
@@ -62,15 +65,11 @@ void	count_map_lines(t_cub *cub, int fd)
 	exit(2);
 }
 
-void	fill_map(char	*file, t_cub *cub)
+void	fill_map(t_cub *cub, int fd)
 {
-	int		fd;
 	int		i;
 	char	*line;
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		exit(1);
 	i = 0;
 	while (i++ < 6)
 	{
@@ -93,7 +92,7 @@ void	fill_map(char	*file, t_cub *cub)
 	close(fd);
 }
 
-void	refill_map(t_cub *cub)
+static void	refill_map_part(t_cub *cub)
 {
 	int		i;
 	int		j;
@@ -116,13 +115,21 @@ void	refill_map(t_cub *cub)
 		free(cub->map[i]);
 		cub->map[i] = line;
 	}
+}
+
+void	refill_map(t_cub *cub)
+{
+	int		j;
+	char	*line;
+
+	refill_map_part(cub);
 	cub->map_width += 1;
 	cub->map_height += 2;
 	line = malloc(sizeof(char) * cub->map_width + 2);
 	j = -1;
 	while (++j < cub->map_width)
 	{
-		line[j]= ' ';
+		line[j] = ' ';
 	}
 	line[j] = '\0';
 	cub->map[0] = line;

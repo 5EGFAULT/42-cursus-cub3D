@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 21:53:48 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 00:07:09 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 14:50:36 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,7 @@ void	validate_file_name(char *file)
 
 void	validate_cub(t_cub *cub)
 {
-	//TODO check extern objects
 	validator_obj(cub);
-	//TODO check map closed
 	validator_closed(cub);
-	//TODO check map one player position only 
 	validator_player(cub);
-	//bonus //TODO check hidden door
-	
 }

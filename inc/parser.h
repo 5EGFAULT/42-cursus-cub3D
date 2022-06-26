@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:42:54 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/25 21:55:25 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 14:47:33 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_conf(t_cub *cub);
 void	parse_map(char	*file, t_cub *cub);
 void	parse_map(char	*file, t_cub *cub);
 void	count_map_lines(t_cub *cub, int fd);
-void	fill_map(char	*file, t_cub *cub);
+void	fill_map(t_cub *cub, int fd);
 void	refill_map(t_cub *cub);
 
 #endif
