@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:33:02 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 14:36:36 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 18:37:08 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,24 @@ char	*ft_strtrim(char const *s1, char const *set)
 		;
 	end = i + 1;
 	return (fill_new_str(s1, start, end));
+}
+
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	nbr;
+	int	sign;
+
+	i = 0;
+	sign = 1;
+	nbr = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == ' '))
+		++i;
+	if (str[i] == '-')
+		sign = -1;
+	if (str[i] == '+' || str[i] == '-')
+		++i;
+	while (str[i] >= '0' && str[i] <= '9')
+		nbr = nbr * 10 + str[i++] - '0';
+	return (sign * nbr);
 }

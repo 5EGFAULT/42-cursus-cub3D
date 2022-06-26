@@ -19,14 +19,16 @@ GNL			:= src/get_next_line/get_next_line_utils.c \
 PARSER		:= src/parser/parser.c \
 				src/parser/parser_conf.c \
 				src/parser/parser_map.c \
-				src/parser/parser_utils.c 
+				src/parser/parser_utils.c \
+				src/parser/parser_color.c 
 VALIDATOR	:= src/validator/validator.c \
 				src/validator/validator_map.c \
 				src/validator/validator_file.c
 
 UTILS		:= src/utils/str_utils0.c \
 				src/utils/str_utils1.c \
-				src/utils/str_utils2.c 
+				src/utils/str_utils2.c \
+				src/utils/print_utils0.c 
 
 OBJ			:= $(patsubst %.c, %.o, $(GNL)) \
 			$(patsubst %.c, %.o, $(PARSER)) \
@@ -61,7 +63,9 @@ re: fclean all
 #	   ██    ██           ██    ██         ██ 
 #	   ██    ███████ ███████    ██    ███████ 
 
-t: print_test file_extension
+t: $(NAME)
+	@./$(NAME) maps/g.cub	|| true	
+test: print_test file_extension
 
 print_test:
 	@echo "\033[36m████████ ███████ ███████ ████████ ███████ \033[0m"

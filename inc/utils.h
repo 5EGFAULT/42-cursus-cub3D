@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:32:37 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 14:33:46 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/26 19:28:36 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,8 @@ char	*ft_substr(char *str, char *end);
 char	*ft_strdup(const char *s1);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 char	*ft_strtrim(char const *s1, char const *set);
+int		ft_atoi(const char *str);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putnbr_fd(int n, int fd);
 
 #endif

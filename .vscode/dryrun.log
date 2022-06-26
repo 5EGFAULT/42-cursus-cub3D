@@ -1,20 +1,5 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/asouinia/Desktop/42-cursus-cub3D'
-cc -Wall -Wextra -Werror -g  -c src/get_next_line/get_next_line_utils.c  -o src/get_next_line/get_next_line_utils.o
- 
-cc -Wall -Wextra -Werror -g  -c src/get_next_line/get_next_line.c  -o src/get_next_line/get_next_line.o
-cc -Wall -Wextra -Werror -g  -c src/parser/parser.c  -o src/parser/parser.o
-cc -Wall -Wextra -Werror -g  -c src/parser/parser_conf.c  -o src/parser/parser_conf.o
-cc -Wall -Wextra -Werror -g  -c src/parser/parser_map.c  -o src/parser/parser_map.o
-cc -Wall -Wextra -Werror -g  -c src/parser/parser_utils.c  -o src/parser/parser_utils.o
- 
-cc -Wall -Wextra -Werror -g  -c src/utils/str_utils0.c  -o src/utils/str_utils0.o
-cc -Wall -Wextra -Werror -g  -c src/utils/str_utils1.c  -o src/utils/str_utils1.o
-cc -Wall -Wextra -Werror -g  -c src/utils/str_utils2.c  -o src/utils/str_utils2.o
-cc -Wall -Wextra -Werror -g  -c src/validator/validator.c  -o src/validator/validator.o
-cc -Wall -Wextra -Werror -g  -c src/validator/validator_map.c  -o src/validator/validator_map.o
-cc -Wall -Wextra -Werror -g  -c src/validator/validator_file.c  -o src/validator/validator_file.o
-cc -Wall -Wextra -Werror -g  -c src/cub3D.c  -o src/cub3D.o
-cc  -Wall -Wextra -Werror -g    src/get_next_line/get_next_line_utils.o  src/get_next_line/get_next_line.o  src/parser/parser.o  src/parser/parser_conf.o  src/parser/parser_map.o  src/parser/parser_utils.o  src/utils/str_utils0.o  src/utils/str_utils1.o  src/utils/str_utils2.o  src/validator/validator.o  src/validator/validator_map.o  src/validator/validator_file.o src/cub3D.o -o cub3D 
+make: Nothing to be done for `all'.
 make: Leaving directory `/Users/asouinia/Desktop/42-cursus-cub3D'
  

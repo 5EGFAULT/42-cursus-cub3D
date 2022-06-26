@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   print_utils0.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 12:41:22 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 19:40:44 by asouinia         ###   ########.fr       */
+/*   Created: 2022/06/26 19:48:04 by asouinia          #+#    #+#             */
+/*   Updated: 2022/06/26 19:48:08 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/parser.h"
-#include "../inc/validator.h"
+#include "../../inc/utils.h"
 
-int	main(int argc, char **argv)
+void	ft_putchar_fd(char c, int fd)
 {
-	t_cub	*cub;
+	write(fd, &c, 1);
+}
 
-	if (argc != 2)
-		return (printf("Usage: ./cub3D <cubfile>\n"), 1);
-	cub = parse_cub(argv[1]);
-	validate_cub(cub);
-	if (!cub)
-		return (0);
-	//system("leaks cub3D");
-	return (0);
+void	ft_putnbr_fd(int n, int fd)
+{
+	long	tmp;
+
+	tmp = n;
+	if (tmp < 0)
+	{
+		ft_putchar_fd('-', fd);
+		tmp *= -1;
+	}
+	if (tmp < 10)
+		ft_putchar_fd('0' + tmp, fd);
+	else
+	{
+		ft_putnbr_fd(tmp / 10, fd);
+		ft_putchar_fd('0' + (tmp % 10), fd);
+	}
 }
