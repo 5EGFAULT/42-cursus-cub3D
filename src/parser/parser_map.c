@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 19:49:04 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/27 19:07:08 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/27 19:16:20 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	parse_map(char	*file, t_cub *cub)
 {
 	int	fd;
-	int	i;
+	//int	i;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -31,12 +31,11 @@ void	parse_map(char	*file, t_cub *cub)
 		exit(1);
 	fill_map(cub, fd);
 	refill_map(cub);
-	i = -1;
-	while (++i < cub->map_height)
-	{
-		printf("||%s||\n", cub->map[i]);
-	}
-	//exit(0);
+	//i = -1;
+	//while (++i < cub->map_height)
+	//{
+	//	printf("||%s||\n", cub->map[i]);
+	//}
 }
 
 void	count_map_lines(t_cub *cub, int fd)

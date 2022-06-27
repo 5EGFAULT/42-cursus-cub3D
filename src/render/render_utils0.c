@@ -6,30 +6,30 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 23:49:39 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/27 02:14:25 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/27 22:17:31 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/render.h"
 
-//void draw_line(void *mlx, void *win, int
-//beginX, int beginY, int endX, int endY, int color)
-//{
-//	double deltaX = endX - beginX; // 10
-//	double deltaY = endY - beginY; // 0
-//	int pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
-//	deltaX /= pixels; // 1
-//	deltaY /= pixels; // 0
-//	double pixelX = beginX;
-//	double pixelY = beginY;
-//	while (pixels)
-//	{
-//	    mlx_pixel_put(mlx, win, pixelX, pixelY, color);
-//	    pixelX += deltaX;
-//	    pixelY += deltaY;
-//	    --pixels;
-//	}
-//}
+void draw_line(void *mlx, void *win, int
+beginX, int beginY, int endX, int endY, int color)
+{
+	double deltaX = endX - beginX; // 10
+	double deltaY = endY - beginY; // 0
+	int pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
+	deltaX /= pixels; // 1
+	deltaY /= pixels; // 0
+	double pixelX = beginX;
+	double pixelY = beginY;
+	while (pixels)
+	{
+	    mlx_pixel_put(mlx, win, pixelX, pixelY, color);
+	    pixelX += deltaX;
+	    pixelY += deltaY;
+	    --pixels;
+	}
+}
 
 void	render_flat(t_game *game, int color, int *begin, int *end)
 {
@@ -67,16 +67,26 @@ void	render_map2d(t_game *game)
 		j = -1;
 		while (++j < game->map_width)
 		{
-			begin[0] = j * game->block[1];
-			begin[1] = i * game->block[0];
-			end[0] = (j + 1) * game->block[1];
-			end[1] = (i + 1) * game->block[0];
+			begin[0] = j * game->block[0];
+			begin[1] = i * game->block[1];
+			end[0] = (j + 1) * game->block[0];
+			end[1] = (i + 1) * game->block[1];
 			if (game->map[i][j] == '0')
 				render_flat(game, game->f, begin, end);
 			else if (game->map[i][j] == '1')
 				render_flat(game, game->c, begin, end);
 			else
-				render_flat(game, 0xFFFFF, begin, end);
+				render_flat(game, 0x8fd185, begin, end);
 		}
 	}
+	begin[0] = j * game->block[0];
+	begin[1] = 0;
+	end[0] = WIN_W;
+	end[1] = WIN_H;
+	render_flat(game, 0x8fd185, begin, end);
+	begin[0] = 0;
+	begin[1] = i * game->block[1];
+	end[0] = WIN_W;
+	end[1] = WIN_H;
+	render_flat(game, 0x8fd185, begin, end);
 }

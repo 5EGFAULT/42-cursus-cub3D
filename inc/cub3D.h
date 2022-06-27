@@ -6,56 +6,67 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:42:54 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/27 00:59:37 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/27 22:29:17 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-# define CUB3D_H
-# include <stdio.h>
+#define CUB3D_H
+#include <stdio.h>
 
-# ifndef WIN_H
-#  define WIN_H 1080
-# endif
-# ifndef WIN_W
-#  define WIN_W 1920
-# endif
+//#ifndef WIN_H
+//#define WIN_H 1800
+//#endif
+//#ifndef WIN_W
+//#define WIN_W 3200
+//#endif
+
+
+#ifndef WIN_H
+#define WIN_H 1080
+#endif
+#ifndef WIN_W
+#define WIN_W 1920
+#endif
+
 
 typedef struct s_cub
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	char	*f;
-	char	*c;
-	int		f_color;
-	int		c_color;
-	char	**map;
-	int		map_height;
-	int		map_width;
-	int		pos[2];
-	char	dir;
-}t_cub;
+	char *no;
+	char *so;
+	char *we;
+	char *ea;
+	char *f;
+	char *c;
+	int f_color;
+	int c_color;
+	char **map;
+	int map_height;
+	int map_width;
+	int pos[2];
+	char dir;
+} t_cub;
 
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
-	void	*ea;
-	void	*we;
-	void	*no;
-	void	*so;
-	void	*f_texture;
-	void	*c_texture;
-	int		f;
-	int		c;
-	char	**map;
-	int		map_height;
-	int		map_width;
-	int		pos[2];
-	int		dir[2];
-	int		block[2];
-}t_game;
+	void *mlx;
+	void *win;
+	void *ea;
+	void *we;
+	void *no;
+	void *so;
+	void *f_texture;
+	void *c_texture;
+	int f;
+	int c;
+	char **map;
+	int map_height;
+	int map_width;
+	int pos[2];
+	double dir[2];
+	int block[2];
+	int win_w;
+	int win_h;
+} t_game;
 
 #endif
