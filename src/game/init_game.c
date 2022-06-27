@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 20:28:18 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/27 22:16:28 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/28 00:33:09 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ t_game *init_game(t_cub *cub)
 	// mlx_get_screen_size(game->mlx, &game->win_w, &game->win_h);
 	game->block[1] = floor(game->win_h / (game->map_height));
 	game->block[0] = floor(game->win_w / (game->map_width));
-	//game->block[0] = 10;
-	//game->block[1] = 10;
+	game->block[0] = 40;
+	game->block[1] = 40;
 	if (cub->dir == 'N')
 		game->dir[1] = -1;
 	else if (cub->dir == 'S')
