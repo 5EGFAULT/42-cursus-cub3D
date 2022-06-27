@@ -79,7 +79,7 @@ re: fclean all
 #	   ██    ███████ ███████    ██    ███████ 
 
 t: $(NAME)
-	@./$(NAME) maps/g.cub	|| true	
+	@./$(NAME) maps/f.cub	|| true	
 test: print_test file_extension
 
 print_test:

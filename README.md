@@ -12,3 +12,19 @@
   - [ ] - Textured Raycaster
   - [ ] - Floor and Ceiling
   - [ ] - Scaling Sprites
+
+# TODO 2
+
+  - [ ] - Check map height and width in init game not accurate
+
+```
+		111
+		1N1
+		111
+```
+
+  - [ ] - draw 2d plane game
+  - [ ] - draw 2d player position and direction with an image
+  - [ ] - move player in 2d surface (plane)
+  - [ ] - cast rays around player then from player direction -30deg +30deg
+
