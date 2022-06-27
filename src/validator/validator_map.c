@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 22:00:19 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 20:44:34 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/27 18:26:55 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,31 @@ static void	validator_closed_part(t_cub *cub, int i, int j)
 	error = 0;
 	if (cub->map[i][j] == ' ')
 	{
-		if (j > 0)
-			(ft_strchr("0NWES", cub->map[i][j - 1])) && error++;
-		if (j < cub->map_width - 1)
-			(ft_strchr("0NWES", cub->map[i][j + 1])) && error++;
-		if (i > 0)
-			(ft_strchr("0NWES", cub->map[i - 1][j])) && error++;
-		if (i < cub->map_height - 1)
-			(ft_strchr("0NWES", cub->map[i + 1][j])) && error++;
+		if (j > 0 && ft_strchr("0NWES", cub->map[i][j - 1]))
+		{
+			error++;
+			dprintf(2,"|%c||%s|%s|\n", cub->map[i][j - 1],cub->map[i],cub->map[i+1]);
+		}
+		if (j < cub->map_width - 1 && ft_strchr("0NWES", cub->map[i][j + 1]))
+
+		{
+			error++;
+			dprintf(2,"-%c-|%s|%s|\n",cub->map[i][j + 1],cub->map[i],cub->map[i+1]);
+		}
+		if (i > 0 && ft_strchr("0NWES", cub->map[i - 1][j]))
+		{
+			error++;
+			dprintf(2,"(%c)|%s|%s|\n",cub->map[i - 1][j],cub->map[i],cub->map[i+1]);
+		}
+		if (i < cub->map_height - 1 && ft_strchr("0NWES", cub->map[i + 1][j]))
+
+		{
+			error++;
+			dprintf(2,"{%c}|%s|%s|\n",cub->map[i + 1][j],cub->map[i],cub->map[i+1]);
+		}
 		if (error)
 		{
+			//dprintf(2,"%d  %d  {%c}\n",i,j,cub->map[i][j]);
 			write(2, "\033[31mError: Map not closed\n\033[0m", 32);
 			exit(2);
 		}
@@ -102,9 +117,11 @@ void	validator_closed(t_cub *cub)
 	int	j;
 
 	i = -1;
+	printf("w{%d}\n",cub->map_width);
 	while (++i < cub->map_height)
 	{
 		j = -1;
+		printf("{%s}\n",cub->map[i]);
 		while (++j < cub->map_width)
 		{
 			validator_closed_part(cub, i, j);

@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 20:28:18 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/27 02:26:30 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/27 14:27:28 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	run_game(t_cub *cub)
 	if (!game)
 		exit(3);
 	hooks(game);
-	//render_map2d(game);
+	render_map2d(game);
 	mlx_loop(game->mlx);
 }
 

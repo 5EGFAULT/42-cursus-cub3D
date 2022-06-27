@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 14:29:31 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/25 16:28:31 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:40:54 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 # include <unistd.h>
 # include <stdlib.h>
-# define BUFFER_SIZE 32
+# define BUFFER_SIZE 1
 
 char	*get_next_line(int fd);
 int		gnl_ft_strlen(char *str);
