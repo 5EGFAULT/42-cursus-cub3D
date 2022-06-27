@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 12:41:22 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 23:38:46 by asouinia         ###   ########.fr       */
+/*   Created: 2022/06/26 22:00:31 by asouinia          #+#    #+#             */
+/*   Updated: 2022/06/26 23:32:04 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/parser.h"
-#include "../inc/validator.h"
-#include "../inc/game.h"
+#include "../../inc/game.h"
 
-int	main(int argc, char **argv)
+
+int	destroy_win(t_game *game)
 {
-	t_cub	*cub;
+	mlx_destroy_window(game->mlx, game->win);
+	exit(0);
+}
 
-	if (argc != 2)
-		return (printf("Usage: ./cub3D <cubfile>\n"), 1);
-	cub = parse_cub(argv[1]);
-	if (!cub)
-		return (0);
-	validate_cub(cub);
-	run_game(cub);
-	//system("leaks cub3D");
+int	key_hook(int keycode, t_game *game)
+{
+	if (keycode == KEY_ESC)
+		destroy_win(game);
 	return (0);
+}
+
+void	hooks(t_game *game)
+{
+	mlx_hook(game->win, 2, 1L << 0, key_hook, game);
+	mlx_hook(game->win, 17, 1L << 0, destroy_win, game);
 }

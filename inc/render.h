@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 12:41:22 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 23:38:46 by asouinia         ###   ########.fr       */
+/*   Created: 2022/06/26 23:50:03 by asouinia          #+#    #+#             */
+/*   Updated: 2022/06/27 01:22:59 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/parser.h"
-#include "../inc/validator.h"
-#include "../inc/game.h"
+#ifndef RENDER_H
+# define RENDER_H
+# include <stdlib.h>
+# include <mlx.h>
+# include <math.h>
+# include "cub3D.h"
+# include "utils.h"
 
-int	main(int argc, char **argv)
-{
-	t_cub	*cub;
+void	render_flat(t_game *game, int color, int *begin, int *end);
 
-	if (argc != 2)
-		return (printf("Usage: ./cub3D <cubfile>\n"), 1);
-	cub = parse_cub(argv[1]);
-	if (!cub)
-		return (0);
-	validate_cub(cub);
-	run_game(cub);
-	//system("leaks cub3D");
-	return (0);
-}
+#endif

@@ -31,22 +31,33 @@ UTILS		:= src/utils/str_utils0.c \
 				src/utils/print_utils0.c 
 
 GAME		:= src/game/game.c \
-				src/game/init_game.c 
+				src/game/init_game.c \
+				src/game/hooks.c 
+
+RENDER		:= src/render/render_utils0.c \
 
 OBJ			:= $(patsubst %.c, %.o, $(GNL)) \
 			$(patsubst %.c, %.o, $(PARSER)) \
 			$(patsubst %.c, %.o, $(UTILS)) \
 			$(patsubst %.c, %.o, $(VALIDATOR)) \
 			$(patsubst %.c, %.o, $(GAME)) \
+			$(patsubst %.c, %.o, $(RENDER)) \
 			src/cub3D.o
 
+#getting resolution of mac
+#RWIDTH		:= $(shell system_profiler SPDisplaysDataType | grep Resolution | awk '{print $$2}') 
+#RHIGHT		:= $(shell system_profiler SPDisplaysDataType | grep Resolution | awk '{print $$4}')
+
 CC			:= cc
-FLAGS		:= -Wall -Wextra -Werror -Imlx -g -fsanitize=address 
+#FLAGS		:= -Wall -Wextra -Werror  -D WIN_H=$(RHIGHT)  -D WIN_W=$(RWIDTH)  -g -fsanitize=address 
+#FLAGS		:= -Wall -Wextra -Werror  -D WIN_H=1760  -D WIN_W=3200  -g -fsanitize=address 
+FLAGS		:= -Wall -Wextra -Werror   -g -fsanitize=address 
+
 .PHONY: all clean fclean re bonus
 
 all: $(NAME)
 $(NAME): $(OBJ)
-	@$(CC)  $(FLAGS)  -lmlx -framework OpenGL -framework AppKit  $(OBJ) -o $(NAME) 
+	@$(CC) $(FLAGS) -lmlx -framework OpenGL -framework AppKit $(OBJ)   -o $(NAME) 
 %.o: %.c
 	@$(CC) $(FLAGS) -c $<  -o $@
 

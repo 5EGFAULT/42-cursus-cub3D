@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 20:28:18 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 21:18:31 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/27 01:00:39 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_game	*init_game(t_cub *cub)
 	game->map[game->pos[0]][game->pos[1]] = '0';
 	game->dir[0] = 0;
 	game->dir[1] = 0;
+	game->block[0] = WIN_W / (game->map_width - 1);
+	game->block[1] = WIN_H / (game->map_height - 1);
 	if (cub->dir == 'N')
 		game->dir[1] = -1;
 	else if (cub->dir == 'S')
@@ -60,7 +62,8 @@ void	load_mlx(t_game *game, t_cub *cub)
 		exit(3);
 	game->win = mlx_new_window(game->mlx, WIN_W, WIN_H, "Cub3D");
 	if (!game->win)
-		exit(3);	game->ea = xpm_file_load(cub->ea, game->mlx);
+		exit(3);
+	game->ea = xpm_file_load(cub->ea, game->mlx);
 	game->no = xpm_file_load(cub->no, game->mlx);
 	game->we = xpm_file_load(cub->we, game->mlx);
 	game->so = xpm_file_load(cub->so, game->mlx);

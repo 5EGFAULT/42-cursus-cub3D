@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:42:54 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 21:31:22 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/27 00:59:37 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 # include <stdio.h>
 
 # ifndef WIN_H
-#  define WIN_H 1024
+#  define WIN_H 1080
 # endif
 # ifndef WIN_W
-#  define WIN_W 1980
+#  define WIN_W 1920
 # endif
 
 typedef struct s_cub
@@ -37,5 +37,25 @@ typedef struct s_cub
 	int		pos[2];
 	char	dir;
 }t_cub;
+
+typedef struct s_game
+{
+	void	*mlx;
+	void	*win;
+	void	*ea;
+	void	*we;
+	void	*no;
+	void	*so;
+	void	*f_texture;
+	void	*c_texture;
+	int		f;
+	int		c;
+	char	**map;
+	int		map_height;
+	int		map_width;
+	int		pos[2];
+	int		dir[2];
+	int		block[2];
+}t_game;
 
 #endif
