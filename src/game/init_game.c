@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 20:28:18 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/28 13:32:04 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:26:05 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ static void	game_map_fill(t_cub *cub, t_game *game)
 		free(cub->map[i]);
 		game->map[i - 1] = line;
 	}
+	free(cub->map[0]);
 	free(cub->map);
 	game->map_height = cub->map_height - 2;
 	game->map_width = cub->map_width - 2;
-	game->pos[1] = cub->pos[0] - 1;
-	game->pos[0] = cub->pos[1] - 1;
-	game->map[game->pos[1]][game->pos[0]] = '0';
+	game->dir[0] = 0;
+	game->dir[1] = 0;
+	game->map[cub->pos[0]][cub->pos[1]] = '0';
 }
 
 t_game	*init_game(t_cub *cub)
@@ -45,14 +46,14 @@ t_game	*init_game(t_cub *cub)
 	if (!game)
 		return (NULL);
 	game_map_fill(cub, game);
-	game->dir[0] = 0;
-	game->dir[1] = 0;
 	game->win_w = WIN_W;
 	game->win_h = WIN_H;
 	game->block[1] = floor(game->win_h / (game->map_height));
 	game->block[0] = floor(game->win_w / (game->map_width));
 	//game->block[0] = 40;
 	//game->block[1] = 40;
+	game->pos[1] = (cub->pos[0] - 1) * game->block[1];
+	game->pos[0] = (cub->pos[1] - 1) * game->block[1];
 	if (cub->dir == 'N')
 		game->dir[1] = -1;
 	else if (cub->dir == 'S')

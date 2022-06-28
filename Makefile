@@ -15,12 +15,14 @@
 	
 NAME		:= cub3D
 GNL			:= src/get_next_line/get_next_line_utils.c \
-				src/get_next_line/get_next_line.c
+				src/get_next_line/get_next_line.c \
+
 PARSER		:= src/parser/parser.c \
 				src/parser/parser_conf.c \
 				src/parser/parser_map.c \
 				src/parser/parser_utils.c \
-				src/parser/parser_color.c 
+				src/parser/parser_color.c \
+
 VALIDATOR	:= src/validator/validator.c \
 				src/validator/validator_map.c \
 				src/validator/validator_file.c
@@ -32,9 +34,10 @@ UTILS		:= src/utils/str_utils0.c \
 
 GAME		:= src/game/game.c \
 				src/game/init_game.c \
-				src/game/hooks.c 
+				src/game/hooks.c \
 
 RENDER		:= src/render/render_utils0.c \
+				src/render/render_utils1.c \
 
 OBJ			:= $(patsubst %.c, %.o, $(GNL)) \
 			$(patsubst %.c, %.o, $(PARSER)) \
@@ -79,7 +82,7 @@ re: fclean all
 #	   ██    ███████ ███████    ██    ███████ 
 
 t: $(NAME)
-	@./$(NAME) maps/f.cub	|| true	
+	@./$(NAME) maps/t.cub	|| true	
 test: print_test file_extension
 
 print_test:
