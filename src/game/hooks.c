@@ -6,15 +6,15 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 22:00:31 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/26 23:32:04 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:24:44 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/game.h"
 
-
 int	destroy_win(t_game *game)
 {
+	system("leaks cub3D");
 	mlx_destroy_window(game->mlx, game->win);
 	exit(0);
 }

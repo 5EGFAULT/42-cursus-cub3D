@@ -6,17 +6,17 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 20:28:18 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/28 00:33:09 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:32:04 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/game.h"
 #include <mlx.h>
 
-static void game_map_fill(t_cub *cub, t_game *game)
+static void	game_map_fill(t_cub *cub, t_game *game)
 {
-	int i;
-	char *line;
+	int		i;
+	char	*line;
 
 	game->map = malloc(sizeof(char *) * cub->map_height - 2);
 	if (!game->map)
@@ -24,35 +24,35 @@ static void game_map_fill(t_cub *cub, t_game *game)
 	i = 0;
 	while (++i < cub->map_height - 1)
 	{
-		line = ft_substr(cub->map[i] + 1, cub->map[i] + ft_strlen(cub->map[i]) - 1);
+		line = ft_substr(cub->map[i] + 1, cub->map[i] + \
+		ft_strlen(cub->map[i]) - 1);
 		free(cub->map[i]);
 		game->map[i - 1] = line;
 	}
 	free(cub->map);
-}
-
-t_game *init_game(t_cub *cub)
-{
-	t_game *game;
-
-	game = malloc(sizeof(t_game));
-	if (!game)
-		return (NULL);
-	game_map_fill(cub, game);
 	game->map_height = cub->map_height - 2;
 	game->map_width = cub->map_width - 2;
 	game->pos[1] = cub->pos[0] - 1;
 	game->pos[0] = cub->pos[1] - 1;
 	game->map[game->pos[1]][game->pos[0]] = '0';
+}
+
+t_game	*init_game(t_cub *cub)
+{
+	t_game	*game;
+
+	game = malloc(sizeof(t_game));
+	if (!game)
+		return (NULL);
+	game_map_fill(cub, game);
 	game->dir[0] = 0;
 	game->dir[1] = 0;
 	game->win_w = WIN_W;
 	game->win_h = WIN_H;
-	// mlx_get_screen_size(game->mlx, &game->win_w, &game->win_h);
 	game->block[1] = floor(game->win_h / (game->map_height));
 	game->block[0] = floor(game->win_w / (game->map_width));
-	game->block[0] = 40;
-	game->block[1] = 40;
+	//game->block[0] = 40;
+	//game->block[1] = 40;
 	if (cub->dir == 'N')
 		game->dir[1] = -1;
 	else if (cub->dir == 'S')
@@ -65,10 +65,10 @@ t_game *init_game(t_cub *cub)
 	return (game);
 }
 
-static void *xpm_file_load(char *file, void *mlx)
+static void	*xpm_file_load(char *file, void *mlx)
 {
-	void *img;
-	int i;
+	void	*img;
+	int		i;
 
 	img = mlx_xpm_file_to_image(mlx, file, &i, &i);
 	if (img)
@@ -79,7 +79,7 @@ static void *xpm_file_load(char *file, void *mlx)
 	exit(2);
 }
 
-void load_mlx(t_game *game, t_cub *cub)
+void	load_mlx(t_game *game, t_cub *cub)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)

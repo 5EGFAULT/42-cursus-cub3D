@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 22:00:19 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/27 19:17:49 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:41:09 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,13 @@ static void	validator_closed_part(t_cub *cub, int i, int j)
 	if (cub->map[i][j] == ' ')
 	{
 		if (j > 0 && ft_strchr("0NWES", cub->map[i][j - 1]))
-		error++;
+			error++;
 		if (j < cub->map_width - 1 && ft_strchr("0NWES", cub->map[i][j + 1]))
-
-		error++;
+			error++;
 		if (i > 0 && ft_strchr("0NWES", cub->map[i - 1][j]))
-		error++;
+			error++;
 		if (i < cub->map_height - 1 && ft_strchr("0NWES", cub->map[i + 1][j]))
-
-		error++;
+			error++;
 		if (error)
 		{
 			write(2, "\033[31mError: Map not closed\n\033[0m", 32);

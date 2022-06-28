@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 19:49:04 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/27 19:16:20 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:33:23 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 void	parse_map(char	*file, t_cub *cub)
 {
 	int	fd;
-	//int	i;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -31,11 +30,6 @@ void	parse_map(char	*file, t_cub *cub)
 		exit(1);
 	fill_map(cub, fd);
 	refill_map(cub);
-	//i = -1;
-	//while (++i < cub->map_height)
-	//{
-	//	printf("||%s||\n", cub->map[i]);
-	//}
 }
 
 void	count_map_lines(t_cub *cub, int fd)
@@ -44,7 +38,7 @@ void	count_map_lines(t_cub *cub, int fd)
 	char	*line;
 
 	i = 0;
-	while (++i< 7)
+	while (++i < 7)
 	{
 		line = skip_empty_lines(fd);
 		free(line);
@@ -70,7 +64,7 @@ void	fill_map(t_cub *cub, int fd)
 	char	*line;
 
 	i = 0;
-	while (++i< 7)
+	while (++i < 7)
 	{
 		line = skip_empty_lines(fd);
 		free(line);
@@ -130,5 +124,5 @@ void	refill_map(t_cub *cub)
 		line[j] = ' ';
 	line[j] = '\0';
 	cub->map[0] = line;
-	cub->map[cub->map_height - 1] = ft_strdup(line);
+	cub->map[cub->map_height - 1] = line;
 }
