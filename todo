@@ -1,1 +1,46 @@
 checker for  maps available github
+
+
+
+void	move_player(t_game *game, int keycode)
+{
+	int		pas;
+	double	movedir[2];
+	int		correct_key;
+	double	rotdeg;
+
+	pas = 5;
+	correct_key = 0;
+	if (keycode == KEY_UP || keycode == KEY_DOWN)
+	{
+		correct_key = 1;
+		movedir[0] = game->dir[0];
+		movedir[1] = game->dir[0];
+	}
+	else if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
+	{
+		correct_key = 1;
+		if (keycode == KEY_LEFT)
+			rotdeg = 0.01745329251 * -90;
+		else
+			rotdeg = 0.01745329251 * 90;
+		movedir[0] = game->dir[0] * cos(rotdeg) - game->dir[1] * sin(rotdeg);
+		movedir[1] = game->dir[0] * sin(rotdeg) + game->dir[1] * cos(rotdeg);
+	}
+	if (correct_key)
+	{
+		if (keycode == KEY_DOWN)
+		{
+			game->pos[0] -= pas * movedir[0];
+			game->pos[1] -= pas * movedir[1];
+		}
+		else
+		{
+			game->pos[0] += pas * movedir[0];
+			game->pos[1] += pas * movedir[1];
+		}
+		render_map2d(game);
+		draw_player(game);
+		draw_rays(game);
+	}
+}
