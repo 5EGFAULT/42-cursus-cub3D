@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 00:34:26 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/30 17:14:39 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:45:29 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	render_loop(t_game *game)
 {
 	static int	frame;
 
-	if (frame % 500 == 0)
+	if (frame % 60 == 0)
 	{
 		move_player(game);
 		render_map2d(game);
