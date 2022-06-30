@@ -6,12 +6,16 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:22:35 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/30 19:14:22 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:53:28 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/render.h"
 
+int	get_distance(int *p1, int *p2)
+{
+	return (sqrt(pow(p1[0] - p2[0], 2) + pow(p1[1] - p2[1], 2)));
+}
 void cast_ray(t_game *game, double deg)
 {
 	int pos[2];
@@ -37,26 +41,45 @@ void cast_ray(t_game *game, double deg)
 		dyvec[1] = pos[1];
 	dyvec[0] = (dyvec[1] - game->pos[1]) / tan(deg) + game->pos[0];
 
-	//printf("dxvec: %d %d  %c\n", dxvec[0] / game->block[0], dxvec[1] / game->block[1], game->map[dxvec[1] / game->block[1]][dxvec[0] / game->block[0]]);
-	//printf("dxvec: %d %d  \n", dxvec[0] / game->block[0], dxvec[1] / game->block[1]);
-	//printf("=>dxvec: %d %d  \n\n", game->map_height, game->map_width);
-
 	while (dxvec[0] / game->block[0] > 0 && dxvec[1] / game->block[1] > 0 && \
-	dxvec[0] / game->block[0] < game->map_width && dxvec[1] / game->block[1] < game->map_height)
+	dxvec[0] / game->block[0] < game->map_width && dxvec[1] / game->block[1] < game->map_height && \
+	game->map[dxvec[1] / game->block[1]][dxvec[0] / game->block[0]] == '0')
 	{
-	//if (game->map[dxvec[1] / game->block[1]][dxvec[0] / game->block[0]] == '0')
+		if (cos(deg) > 0 && game->map[dxvec[1] / game->block[1]][dxvec[0] / game->block[0]] != '0')
+			break;
+		if (cos(deg) < 0 && game->map[dxvec[1] / game->block[1]][dxvec[0] / game->block[0] - 1] != '0')
+			break;
 		if (cos(deg) > 0)
 			dxvec[0] += game->block[0];
 		if (cos(deg) < 0)
 			dxvec[0] -= game->block[0];
 		dxvec[1] = (dxvec[0] - game->pos[0]) * tan(deg) + game->pos[1];
 	}
+	while (dyvec[0] / game->block[0] > 0 && dyvec[1] / game->block[1] > 0 && \
+	dyvec[0] / game->block[0] < game->map_width && dyvec[1] / game->block[1] < game->map_height && \
+	game->map[dyvec[1] / game->block[1]][dyvec[0] / game->block[0]] == '0')
+	{
+		if (sin(deg) > 0 && game->map[dyvec[1] / game->block[1]][dyvec[0] / game->block[0]] != '0')
+			break;
+		if (sin(deg) < 0 && game->map[dyvec[1] / game->block[1] - 1][dyvec[0] / game->block[0]] != '0')
+			break;
+		if (sin(deg) > 0)
+			dyvec[1] += game->block[1];
+		if (sin(deg) < 0)
+			dyvec[1] -= game->block[1];
+		dyvec[0] = (dyvec[1] - game->pos[1]) / tan(deg) + game->pos[0];
+	}
 
-	draw_point(game, dxvec, 0xFF00FF);
+	// draw_point(game, dxvec, 0xFF00FF);
 	// draw_point(game, dyvec, 0x0000FF);
-	draw_line(game, dxvec, game->pos, 0xFF00FF);
+	// draw_line(game, dxvec, game->pos, 0xFF00FF);
 	// draw_line(game, dyvec,game->pos, 0x0000FF);
 	// draw_point(game, pos, 0xFF0000);
+	if (get_distance(game->pos, dxvec) - get_distance(game->pos, dyvec) < 0)
+		draw_line(game, dxvec,game->pos, 0x0000FF);
+	else
+		draw_line(game, dyvec,game->pos, 0x0000FF);
+
 }
 
 // void	cast_ray(t_game *game, double deg)
@@ -81,25 +104,23 @@ void cast_ray(t_game *game, double deg)
 
 void draw_rays(t_game *game)
 {
-	int e[2];
+	//int e[2];
 	double deg;
 
-	deg = game->dir - 0.523599;
-		cast_ray(game, deg);
-	
+	deg = game->dir - 0.523599;	
 	while (deg < game->dir + 0.523599)
 	{
-		//cast_ray(game, deg);
+		cast_ray(game, deg);
 		// e[0] = 200 * cos(deg) + game->pos[0];
 		// e[1] = 200 * sin(deg) + game->pos[1];
 		// draw_line(game, game->pos, e, 0x764dbc);
 		 deg += .02;
 		//deg += .05;
 	}
-	e[0] = 250 * cos(game->dir) + game->pos[0];
-	e[1] = 250 * sin(game->dir) + game->pos[1];
-	draw_line(game, game->pos, e, 0x0000);
-	draw_point(game, game->pos, 0xff0000);
+	//e[0] = 250 * cos(game->dir) + game->pos[0];
+	//e[1] = 250 * sin(game->dir) + game->pos[1];
+	//draw_line(game, game->pos, e, 0x0000);
+	//draw_point(game, game->pos, 0xff0000);
 }
 
 void render_grid(t_game *game)
