@@ -7,7 +7,7 @@
 # TODO
 
   - [x] - Parse map and the configfile
-  - [ ] - Create a 2D game
+  - [x] - Create a 2D game
   - [ ] - Untextured Raycaster
   - [ ] - Textured Raycaster
   - [ ] - Floor and Ceiling
