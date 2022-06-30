@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 00:34:26 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/30 01:18:41 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:14:39 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,16 @@ int	render_loop(t_game *game)
 	}
 	frame++;
 	return (0);
+}
+
+void	draw_point(t_game	*game, int *pos, int color)
+{
+	int	begin[2];
+	int	end[2];
+
+	begin[0] = pos[0] - 2;
+	begin[1] = pos[1] - 2;
+	end[0] = pos[0] + 2;
+	end[1] = pos[1] + 2;
+	render_flat(game, color, begin, end);
 }

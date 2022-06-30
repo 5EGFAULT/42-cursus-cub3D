@@ -20,5 +20,7 @@
   - [x] - draw 2d player position and direction with an image
   - [x] - move player in 2d surface (plane)
   - [x] - cast rays around player then from player direction -30deg +30deg
+  - [ ] - improve rendring strategy to be faster and more performent
+  - [x] - start ray casting and stopping at next line
   - [ ] - start ray casting and stopping at a a wall
 
