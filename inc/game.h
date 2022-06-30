@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 20:28:30 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/28 14:42:58 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/30 00:02:12 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_game	*init_game(t_cub *cub);
 void	load_mlx(t_game *game, t_cub *cub);
 
 void	hooks(t_game *game);
-void	move_player(t_game *game, int keycode);
+void	move_player(t_game *game);
 void	rotate_player(t_game *game, int keycode);
 
 #endif

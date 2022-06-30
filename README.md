@@ -17,7 +17,8 @@
 
   - [x] - Check map height and width in init game not accurate
   - [x] - draw 2d plane game
-  - [√] - draw 2d player position and direction with an image
-  - [ ] - move player in 2d surface (plane)
-  - [ ] - cast rays around player then from player direction -30deg +30deg
+  - [x] - draw 2d player position and direction with an image
+  - [x] - move player in 2d surface (plane)
+  - [x] - cast rays around player then from player direction -30deg +30deg
+  - [ ] - start ray casting and stopping at a a wall
 

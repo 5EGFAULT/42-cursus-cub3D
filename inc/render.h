@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 23:50:03 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/28 14:42:54 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/30 01:18:06 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,8 @@ void	render_map2d(t_game *game);
 void	draw_line(t_game *game, int *begin, int *end, int color);
 void	draw_player(t_game *game);
 void	draw_rays(t_game *game);
+int		render_loop(t_game *game);
+void	move_player(t_game *game);
+void	render_grid(t_game	*game);
 
 #endif

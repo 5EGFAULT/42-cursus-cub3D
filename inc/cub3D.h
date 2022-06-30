@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:42:54 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/28 12:57:15 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/06/30 02:35:36 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # ifndef WIN_W
 #  define WIN_W 1920
 # endif
+# define ROTATE_SPEED 0.05
+# define MOVE_SPEED 20
 
 typedef struct s_cub
 {
@@ -61,10 +63,10 @@ typedef struct s_game
 	int		map_height;
 	int		map_width;
 	int		pos[2];
-	double	dir[2];
+	double	dir;
 	int		block[2];
-	int		win_w;
-	int		win_h;
+	int		rotate;
+	int		move;
 }t_game;
 
 #endif

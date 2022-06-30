@@ -38,6 +38,7 @@ GAME		:= src/game/game.c \
 
 RENDER		:= src/render/render_utils0.c \
 				src/render/render_utils1.c \
+				src/render/render.c \
 
 OBJ			:= $(patsubst %.c, %.o, $(GNL)) \
 			$(patsubst %.c, %.o, $(PARSER)) \
@@ -54,7 +55,7 @@ OBJ			:= $(patsubst %.c, %.o, $(GNL)) \
 CC			:= cc
 #FLAGS		:= -Wall -Wextra -Werror  -D WIN_H=$(RHIGHT)  -D WIN_W=$(RWIDTH)  -g -fsanitize=address 
 #FLAGS		:= -Wall -Wextra -Werror  -D WIN_H=1760  -D WIN_W=3200  -g -fsanitize=address 
-FLAGS		:= -Wall -Wextra -Werror   -g #-fsanitize=address 
+FLAGS		:= -Wall -Wextra -Werror   -g -fsanitize=address 
 
 .PHONY: all clean fclean re bonus
 
