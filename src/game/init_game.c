@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 20:28:18 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/30 18:04:09 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/01 22:23:10 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	game_map_fill(t_cub *cub, t_game *game)
 	game->map_height = cub->map_height - 2;
 	game->map_width = cub->map_width - 2;
 	game->dir = 0;
-	game->map[cub->pos[0]][cub->pos[1]] = '0';
+	game->map[cub->pos[0] - 1][cub->pos[1] - 1] = '0';
 }
 
 t_game	*init_game(t_cub *cub)

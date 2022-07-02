@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:22:35 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/30 19:53:28 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/01 22:29:52 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ void cast_ray(t_game *game, double deg)
 	if (get_distance(game->pos, dxvec) - get_distance(game->pos, dyvec) < 0)
 		draw_line(game, dxvec,game->pos, 0x0000FF);
 	else
-		draw_line(game, dyvec,game->pos, 0x0000FF);
-
+		draw_line(game, dyvec,game->pos, 0x00FF00);
 }
 
 // void	cast_ray(t_game *game, double deg)
@@ -106,15 +105,21 @@ void draw_rays(t_game *game)
 {
 	//int e[2];
 	double deg;
+	double inc;
 
-	deg = game->dir - 0.523599;	
+	inc = 66 / ( WIN_W);
+	inc = inc * M_PI / 180;
+	//printf("%f\n", inc);
+	deg = game->dir - 0.523599;
+		//cast_ray(game, game->dir);
 	while (deg < game->dir + 0.523599)
 	{
 		cast_ray(game, deg);
 		// e[0] = 200 * cos(deg) + game->pos[0];
 		// e[1] = 200 * sin(deg) + game->pos[1];
 		// draw_line(game, game->pos, e, 0x764dbc);
-		 deg += .02;
+		 deg += .001;
+		// deg += inc;
 		//deg += .05;
 	}
 	//e[0] = 250 * cos(game->dir) + game->pos[0];

@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 23:49:39 by asouinia          #+#    #+#             */
-/*   Updated: 2022/06/30 02:33:57 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/01 22:19:14 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	render_map2d(t_game	*game)
 			else if (game->map[i][j] == '1')
 				render_flat(game, game->c, begin, end);
 			else
-				render_flat(game, 0x8fd185, begin, end);
+				render_flat(game, 0xba293c, begin, end);
 		}
 	}
 	draw_extra_as_blanc(game);
