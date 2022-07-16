@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 23:49:39 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/01 22:19:14 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/16 13:53:52 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,10 @@ void	draw_player(t_game *game)
 	int		b[2];
 	int		e[2];
 
-	b[0] = game->pos[0] - 20;
-	b[1] = game->pos[1] - 20;
-	e[0] = game->pos[0] + 20;
-	e[1] = game->pos[1] + 20;
+	b[0] = game->pos[0] - 10;
+	b[1] = game->pos[1] - 10;
+	e[0] = game->pos[0] + 10;
+	e[1] = game->pos[1] + 10;
 	//b[0] = game->pos[0] - .5 * game->block[0];
 	//b[1] = game->pos[1] - .5 * game->block[1];
 	//e[0] = game->pos[0] + .5 * game->block[0];

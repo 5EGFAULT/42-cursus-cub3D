@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:22:35 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/01 22:29:52 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/16 14:21:10 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ void cast_ray(t_game *game, double deg)
 	if (get_distance(game->pos, dxvec) - get_distance(game->pos, dyvec) < 0)
 		draw_line(game, dxvec,game->pos, 0x0000FF);
 	else
-		draw_line(game, dyvec,game->pos, 0x00FF00);
+		draw_line(game, dyvec,game->pos, 0x0000FF);
+		//draw_line(game, dyvec,game->pos, 0x00FF00);
 }
 
 // void	cast_ray(t_game *game, double deg)
