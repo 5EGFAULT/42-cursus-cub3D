@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 00:34:26 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/16 20:40:50 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/16 21:26:15 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,11 @@ void move_player(t_game *game)
 	}
 	else
 	{
-		 game->pos[0] = move[0];
-		 game->pos[1] = move[1];
-		//if (game->move == 1 || game->move == -1)
+		game->pos[0] = move[0];
+		game->pos[1] = move[1];
+		// if (game->move == 1 || game->move == -1)
 		//	check_collision_raycast_move(game, game->dir + M_PI * reverse, move);
-		//else if (game->move == 2 || game->move == -2)
+		// else if (game->move == 2 || game->move == -2)
 		//	check_collision_raycast_move(game, game->dir + M_PI_2 * reverse, move);
 	}
 	// if (move[0] / game->block[0] < game->map_width && move[0] / game->block[0] > -1 &&
@@ -155,11 +155,13 @@ int render_loop(t_game *game)
 
 	if (frame % 60 == 0)
 	{
-		render_map2d(game);
-		render_grid(game);
-		move_player(game);
-		draw_player(game);
-		draw_rays(game);
+		//render_map2d(game);
+		//render_grid(game);
+		//move_player(game);
+		//draw_player(game);
+		//draw_rays(game);	
+		render_mini_map(game);
+		mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	}
 	frame++;
 	return (0);

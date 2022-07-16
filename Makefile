@@ -39,6 +39,7 @@ GAME		:= src/game/game.c \
 RENDER		:= src/render/render_utils0.c \
 				src/render/render_utils1.c \
 				src/render/render.c \
+				src/render/render_v2.c \
 
 OBJ			:= $(patsubst %.c, %.o, $(GNL)) \
 			$(patsubst %.c, %.o, $(PARSER)) \
