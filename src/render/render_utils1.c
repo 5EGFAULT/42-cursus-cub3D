@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:22:35 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/21 20:11:06 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/21 23:25:56 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	get_distance(int *p1, int *p2)
 {
 	return (sqrt(pow(p1[0] - p2[0], 2) + pow(p1[1] - p2[1], 2)));
 }
-void cast_ray(t_game *game, double deg)
+void	cast_ray(t_game *game, double deg, int idx)
 {
 	int pos[2];
 	int dyvec[2];
@@ -69,17 +69,24 @@ void cast_ray(t_game *game, double deg)
 			dyvec[1] -= game->block[1];
 		dyvec[0] = (dyvec[1] - game->pos[1]) / tan(deg) + game->pos[0];
 	}
-
 	// draw_point(game, dxvec, 0xFF00FF);
 	// draw_point(game, dyvec, 0x0000FF);
 	// draw_line(game, dxvec, game->pos, 0xFF00FF);
 	// draw_line(game, dyvec,game->pos, 0x0000FF);
 	// draw_point(game, pos, 0xFF0000);
 	if (get_distance(game->pos, dxvec) - get_distance(game->pos, dyvec) < 0)
-		draw_line_v2(game, dxvec,game->pos, 0x0000FF);
-	else
-		draw_line_v2(game, dyvec,game->pos, 0x0000FF);
-		//draw_line(game, dyvec,game->pos, 0x00FF00);
+	{
+		dyvec[0] = dxvec[0];
+		dyvec[1] = dxvec[1];
+	}
+	//draw_line(game, dyvec,game->pos, 0x00FF00);
+	int lh = WIN_H / (get_distance(game->pos, dyvec) * cos(game->dir - deg) + 1);
+    dxvec[1] = game->split - lh ;
+    dxvec[0] = idx;
+    pos[1] = game->split + lh ;
+    pos[0] = idx;
+	draw_line_v2(game, dyvec, game->pos, 0xFF00FF);
+	draw_line_v2(game, dxvec, pos, 0x00FFFF);
 }
 
 // void	cast_ray(t_game *game, double deg)
@@ -107,21 +114,19 @@ void draw_rays(t_game *game)
 	//int e[2];
 	double deg;
 	double inc;
+	int idx;
 
-	inc = 66 * M_PI / 180;
+	//inc = 66 * M_PI / 180;
+	inc = M_PI / 3;
 	inc = inc / WIN_W;
 	//printf("%f\n", inc);
-	deg = game->dir - 0.523599;
-		//cast_ray(game, game->dir);
-	while (deg < game->dir + 0.523599)
+	deg = game->dir - M_PI / 6;
+	idx = 0;
+	while (deg <= game->dir + M_PI / 6)
 	{
-		cast_ray(game, deg);
-		// e[0] = 200 * cos(deg) + game->pos[0];
-		// e[1] = 200 * sin(deg) + game->pos[1];
-		// draw_line(game, game->pos, e, 0x764dbc);
-		 deg += .001;
-		// deg += inc;
-		//deg += .05;
+		cast_ray(game, deg, idx);
+		deg += inc;
+		idx++;
 	}
 	//e[0] = 250 * cos(game->dir) + game->pos[0];
 	//e[1] = 250 * sin(game->dir) + game->pos[1];

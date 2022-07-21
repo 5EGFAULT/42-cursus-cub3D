@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 00:34:26 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/21 22:06:14 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/21 23:35:39 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,11 @@ void	move_player(t_game *game)
 	// game->pos[1] = move[1];
 	//}
 }
+
+//void	draw_top_down(t_game *game)
+//{
+	
+//}
 
 int render_loop(t_game *game)
 {

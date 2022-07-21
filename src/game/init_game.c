@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 20:28:18 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/21 21:25:09 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/21 23:36:03 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_game *init_game(t_cub *cub)
 	game->block[1] = 64;
 	game->pos[1] = (cub->pos[0] - .5) * game->block[1];
 	game->pos[0] = (cub->pos[1] - .5) * game->block[0];
+	game->split = WIN_H / 2;
 	if (cub->dir == 'N')
 		game->dir = 3 * M_PI_2;
 	else if (cub->dir == 'S')

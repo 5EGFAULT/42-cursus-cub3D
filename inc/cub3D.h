@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:42:54 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/21 21:23:51 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/21 22:41:51 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_game
 	int		map_height;
 	int		map_width;
 	int		pos[2];
+	int		split;
 	double	dir;
 	int		block[2];
 	int		rotate;
