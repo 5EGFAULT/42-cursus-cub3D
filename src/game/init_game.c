@@ -6,17 +6,16 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 20:28:18 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/16 22:16:16 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/19 02:23:34 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/game.h"
-#include <mlx.h>
 
-static void	game_map_fill(t_cub *cub, t_game *game)
+static void game_map_fill(t_cub *cub, t_game *game)
 {
-	int		i;
-	char	*line;
+	int i;
+	char *line;
 
 	game->map = malloc(sizeof(char *) * cub->map_height - 2);
 	if (!game->map)
@@ -24,8 +23,8 @@ static void	game_map_fill(t_cub *cub, t_game *game)
 	i = 0;
 	while (++i < cub->map_height - 1)
 	{
-		line = ft_substr(cub->map[i] + 1, cub->map[i] + \
-		ft_strlen(cub->map[i]) - 1);
+		line = ft_substr(cub->map[i] + 1, cub->map[i] +
+											  ft_strlen(cub->map[i]) - 1);
 		free(cub->map[i]);
 		game->map[i - 1] = line;
 	}
@@ -37,9 +36,9 @@ static void	game_map_fill(t_cub *cub, t_game *game)
 	game->map[cub->pos[0] - 1][cub->pos[1] - 1] = '0';
 }
 
-t_game	*init_game(t_cub *cub)
+t_game *init_game(t_cub *cub)
 {
-	t_game	*game;
+	t_game *game;
 
 	game = malloc(sizeof(t_game));
 	if (!game)
@@ -47,8 +46,8 @@ t_game	*init_game(t_cub *cub)
 	game_map_fill(cub, game);
 	game->block[1] = floor(WIN_H / (game->map_height));
 	game->block[0] = floor(WIN_W / (game->map_width));
-	game->block[0] = 32;
-	game->block[1] = 32;
+	game->block[0] = 64;
+	game->block[1] = 64;
 	game->pos[1] = (cub->pos[0] - 1) * game->block[1];
 	game->pos[0] = (cub->pos[1] - 1) * game->block[0];
 	if (cub->dir == 'N')
@@ -65,10 +64,10 @@ t_game	*init_game(t_cub *cub)
 	return (game);
 }
 
-static void	*xpm_file_load(char *file, void *mlx)
+static void *xpm_file_load(char *file, void *mlx)
 {
-	void	*img;
-	int		i;
+	void *img;
+	int i;
 
 	img = mlx_xpm_file_to_image(mlx, file, &i, &i);
 	if (img)
@@ -79,7 +78,7 @@ static void	*xpm_file_load(char *file, void *mlx)
 	exit(2);
 }
 
-void	load_mlx(t_game *game, t_cub *cub)
+void load_mlx(t_game *game, t_cub *cub)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)

@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 23:49:39 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/16 13:53:52 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/19 01:38:01 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,5 @@ void	draw_player(t_game *game)
 	//b[1] = game->pos[1] - .5 * game->block[1];
 	//e[0] = game->pos[0] + .5 * game->block[0];
 	//e[1] = game->pos[1] + .5 * game->block[1];
-	render_flat(game, 0x4dbc76, b, e);
+	render_rect(game, 0x4dbc76, b, e);
 }

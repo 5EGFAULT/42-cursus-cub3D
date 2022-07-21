@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:22:35 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/16 14:21:10 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/21 03:27:17 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void cast_ray(t_game *game, double deg)
 	// draw_line(game, dyvec,game->pos, 0x0000FF);
 	// draw_point(game, pos, 0xFF0000);
 	if (get_distance(game->pos, dxvec) - get_distance(game->pos, dyvec) < 0)
-		draw_line(game, dxvec,game->pos, 0x0000FF);
+		draw_line_v2(game, dxvec,game->pos, 0x0000FF);
 	else
-		draw_line(game, dyvec,game->pos, 0x0000FF);
+		draw_line_v2(game, dyvec,game->pos, 0x0000FF);
 		//draw_line(game, dyvec,game->pos, 0x00FF00);
 }
 
@@ -108,7 +108,7 @@ void draw_rays(t_game *game)
 	double deg;
 	double inc;
 
-	inc = 66 / ( WIN_W);
+	inc = 66 / WIN_W;
 	inc = inc * M_PI / 180;
 	//printf("%f\n", inc);
 	deg = game->dir - 0.523599;
@@ -142,7 +142,7 @@ void render_grid(t_game *game)
 	{
 		begin[1] = i * game->block[1];
 		end[1] = i * game->block[1];
-		draw_line(game, begin, end, 0x000000);
+		draw_line_v2(game, begin, end, 0x000000);
 	}
 	i = -1;
 	begin[1] = 0;
@@ -151,6 +151,6 @@ void render_grid(t_game *game)
 	{
 		begin[0] = i * game->block[0];
 		end[0] = i * game->block[0];
-		draw_line(game, begin, end, 0x000000);
+		draw_line_v2(game, begin, end, 0x000000);
 	}
 }
