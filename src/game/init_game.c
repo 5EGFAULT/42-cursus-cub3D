@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 20:28:18 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/19 02:23:34 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:25:09 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static void game_map_fill(t_cub *cub, t_game *game)
 	i = 0;
 	while (++i < cub->map_height - 1)
 	{
-		line = ft_substr(cub->map[i] + 1, cub->map[i] +
-											  ft_strlen(cub->map[i]) - 1);
+		line = ft_substr(cub->map[i] + 1, cub->map[i] + \
+ft_strlen(cub->map[i]) - 1);
 		free(cub->map[i]);
 		game->map[i - 1] = line;
 	}
@@ -38,7 +38,7 @@ static void game_map_fill(t_cub *cub, t_game *game)
 
 t_game *init_game(t_cub *cub)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = malloc(sizeof(t_game));
 	if (!game)
@@ -48,8 +48,8 @@ t_game *init_game(t_cub *cub)
 	game->block[0] = floor(WIN_W / (game->map_width));
 	game->block[0] = 64;
 	game->block[1] = 64;
-	game->pos[1] = (cub->pos[0] - 1) * game->block[1];
-	game->pos[0] = (cub->pos[1] - 1) * game->block[0];
+	game->pos[1] = (cub->pos[0] - .5) * game->block[1];
+	game->pos[0] = (cub->pos[1] - .5) * game->block[0];
 	if (cub->dir == 'N')
 		game->dir = 3 * M_PI_2;
 	else if (cub->dir == 'S')
@@ -64,10 +64,10 @@ t_game *init_game(t_cub *cub)
 	return (game);
 }
 
-static void *xpm_file_load(char *file, void *mlx)
+static void	*xpm_file_load(char *file, void *mlx)
 {
-	void *img;
-	int i;
+	void	*img;
+	int		i;
 
 	img = mlx_xpm_file_to_image(mlx, file, &i, &i);
 	if (img)

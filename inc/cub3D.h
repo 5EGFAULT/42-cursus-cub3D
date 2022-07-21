@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:42:54 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/21 03:42:37 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:23:51 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@
 #  define WIN_W 1920
 # endif
 //# define ROTATE_SPEED 0.2
-# define ROTATE_SPEED 0.02
+//# define ROTATE_SPEED 0.02
 //# define MOVE_SPEED 20
-# define MOVE_SPEED 2
+//# define MOVE_SPEED 2
+# define ROTATE_SPEED 0.1
+# define MOVE_SPEED 5
 
 typedef struct s_cub
 {
