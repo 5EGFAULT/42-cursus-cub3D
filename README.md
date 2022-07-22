@@ -26,3 +26,8 @@
   - [ ] - use antialiasing to sharpen the drawing
   - [ ] - improve rendring strategy to be faster and more performent
 
+
+
+
+# TO Read
+ - Bresenham's line algorithm.
