@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:22:35 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/22 20:28:02 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/22 22:14:20 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void cast_ray(t_game *game, double deg, int idx)
 	//dxvec[1] = game->pos[1] / game->block[1];
 	// draw_line(game, dyvec,game->pos, 0x00FF00);
 	double lh = get_distance(game->pos, dyvec) * cos(game->dir - deg);
-		lh =  (game->block[1] / lh) * ((WIN_W /2) * tan(M_PI / 6));
+		lh =  (game->block[1] / lh) * ((WIN_W /2) * tan(M_PI / 3));
 	dxvec[1] = game->split - lh / 2;
 	dxvec[0] = idx;
 	pos[1] = game->split + lh / 2;
@@ -92,20 +92,30 @@ void cast_ray(t_game *game, double deg, int idx)
 	// deg = deg - deg * ((int)deg / 2 * M_PI);
 
 	// printf("%f\n", deg);
-	if (cos(deg) > 0)
-	{
-		if (sin(deg) > 0)
-			ccc = 0xF1C40F; // east
-		else
-			ccc = 0x28B463; // west
-	}
+	//if (cos(deg) > 0)
+	//{
+	//	if (sin(deg) > 0)
+	//		ccc = 0xF1C40F; // east
+	//	else
+	//		ccc = 0x28B463; // west
+	//}
+	//else
+	//{
+	//	if (sin(deg) > 0)
+	//		ccc = 0xFF5733; // north
+	//	else
+	//		ccc = 0x3498DB; // south
+	//}
+	double val = sin(M_PI / 4);
+	if(sin(deg) > val)
+		ccc = 0xF1C40F; // north
+	else if(sin(deg) < -val)
+		ccc = 0x28B463; // south
+	else if(cos(deg) > val)
+		ccc = 0xFF5733; // east
 	else
-	{
-		if (sin(deg) > 0)
-			ccc = 0xFF5733; // north
-		else
-			ccc = 0x3498DB; // south
-	}
+		ccc = 0x3498DB; // west
+
 	draw_line_v2(game, dxvec, pos, ccc);
 }
 
