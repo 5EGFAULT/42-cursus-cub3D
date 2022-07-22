@@ -6,17 +6,17 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:22:35 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/21 23:25:56 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/22 18:51:25 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/render.h"
 
-int	get_distance(int *p1, int *p2)
+int get_distance(int *p1, int *p2)
 {
 	return (sqrt(pow(p1[0] - p2[0], 2) + pow(p1[1] - p2[1], 2)));
 }
-void	cast_ray(t_game *game, double deg, int idx)
+void cast_ray(t_game *game, double deg, int idx)
 {
 	int pos[2];
 	int dyvec[2];
@@ -41,9 +41,9 @@ void	cast_ray(t_game *game, double deg, int idx)
 		dyvec[1] = pos[1];
 	dyvec[0] = (dyvec[1] - game->pos[1]) / tan(deg) + game->pos[0];
 
-	while (dxvec[0] / game->block[0] > 0 && dxvec[1] / game->block[1] > 0 && \
-	dxvec[0] / game->block[0] < game->map_width && dxvec[1] / game->block[1] < game->map_height && \
-	game->map[dxvec[1] / game->block[1]][dxvec[0] / game->block[0]] == '0')
+	while (dxvec[0] / game->block[0] > 0 && dxvec[1] / game->block[1] > 0 &&
+		   dxvec[0] / game->block[0] < game->map_width && dxvec[1] / game->block[1] < game->map_height &&
+		   game->map[dxvec[1] / game->block[1]][dxvec[0] / game->block[0]] == '0')
 	{
 		if (cos(deg) > 0 && game->map[dxvec[1] / game->block[1]][dxvec[0] / game->block[0]] != '0')
 			break;
@@ -55,9 +55,9 @@ void	cast_ray(t_game *game, double deg, int idx)
 			dxvec[0] -= game->block[0];
 		dxvec[1] = (dxvec[0] - game->pos[0]) * tan(deg) + game->pos[1];
 	}
-	while (dyvec[0] / game->block[0] > 0 && dyvec[1] / game->block[1] > 0 && \
-	dyvec[0] / game->block[0] < game->map_width && dyvec[1] / game->block[1] < game->map_height && \
-	game->map[dyvec[1] / game->block[1]][dyvec[0] / game->block[0]] == '0')
+	while (dyvec[0] / game->block[0] > 0 && dyvec[1] / game->block[1] > 0 &&
+		   dyvec[0] / game->block[0] < game->map_width && dyvec[1] / game->block[1] < game->map_height &&
+		   game->map[dyvec[1] / game->block[1]][dyvec[0] / game->block[0]] == '0')
 	{
 		if (sin(deg) > 0 && game->map[dyvec[1] / game->block[1]][dyvec[0] / game->block[0]] != '0')
 			break;
@@ -69,24 +69,44 @@ void	cast_ray(t_game *game, double deg, int idx)
 			dyvec[1] -= game->block[1];
 		dyvec[0] = (dyvec[1] - game->pos[1]) / tan(deg) + game->pos[0];
 	}
-	// draw_point(game, dxvec, 0xFF00FF);
-	// draw_point(game, dyvec, 0x0000FF);
-	// draw_line(game, dxvec, game->pos, 0xFF00FF);
-	// draw_line(game, dyvec,game->pos, 0x0000FF);
-	// draw_point(game, pos, 0xFF0000);
+	int ccc = 0x12f212;
 	if (get_distance(game->pos, dxvec) - get_distance(game->pos, dyvec) < 0)
 	{
 		dyvec[0] = dxvec[0];
 		dyvec[1] = dxvec[1];
 	}
-	//draw_line(game, dyvec,game->pos, 0x00FF00);
-	int lh = WIN_H / (get_distance(game->pos, dyvec) * cos(game->dir - deg) + 1);
-    dxvec[1] = game->split - lh ;
-    dxvec[0] = idx;
-    pos[1] = game->split + lh ;
-    pos[0] = idx;
-	draw_line_v2(game, dyvec, game->pos, 0xFF00FF);
-	draw_line_v2(game, dxvec, pos, 0x00FFFF);
+	//draw_line_v2(game, dyvec, game->pos, ccc);
+	//dyvec[0] = dyvec[0] / game->block[0];
+	//dyvec[1] = dyvec[1] / game->block[1];
+	//dxvec[0] = game->pos[0] / game->block[0];
+	//dxvec[1] = game->pos[1] / game->block[1];
+	// draw_line(game, dyvec,game->pos, 0x00FF00);
+	double lh = get_distance(game->pos, dyvec) * cos(game->dir - deg);
+		lh =  (game->block[1] / lh) * ((WIN_W /2) * tan(M_PI / 6));
+	dxvec[1] = game->split - lh / 2;
+	dxvec[0] = idx;
+	pos[1] = game->split + lh / 2;
+	pos[0] = idx;
+	// draw_line_v2(game, dyvec, game->pos, 0x00ffff);
+
+	// deg = deg - deg * ((int)deg / 2 * M_PI);
+
+	// printf("%f\n", deg);
+	if (cos(deg) > 0)
+	{
+		if (sin(deg) > 0)
+			ccc = 0xF1C40F; // east
+		else
+			ccc = 0x28B463; // west
+	}
+	else
+	{
+		if (sin(deg) > 0)
+			ccc = 0xFF5733; // north
+		else
+			ccc = 0x3498DB; // south
+	}
+	draw_line_v2(game, dxvec, pos, ccc);
 }
 
 // void	cast_ray(t_game *game, double deg)
@@ -111,15 +131,15 @@ void	cast_ray(t_game *game, double deg, int idx)
 
 void draw_rays(t_game *game)
 {
-	//int e[2];
+	// int e[2];
 	double deg;
 	double inc;
 	int idx;
 
-	//inc = 66 * M_PI / 180;
+	// inc = 66 * M_PI / 180;
 	inc = M_PI / 3;
 	inc = inc / WIN_W;
-	//printf("%f\n", inc);
+	// printf("%f\n", inc);
 	deg = game->dir - M_PI / 6;
 	idx = 0;
 	while (deg <= game->dir + M_PI / 6)
@@ -128,10 +148,10 @@ void draw_rays(t_game *game)
 		deg += inc;
 		idx++;
 	}
-	//e[0] = 250 * cos(game->dir) + game->pos[0];
-	//e[1] = 250 * sin(game->dir) + game->pos[1];
-	//draw_line(game, game->pos, e, 0x0000);
-	//draw_point(game, game->pos, 0xff0000);
+	// e[0] = 250 * cos(game->dir) + game->pos[0];
+	// e[1] = 250 * sin(game->dir) + game->pos[1];
+	// draw_line(game, game->pos, e, 0x0000);
+	// draw_point(game, game->pos, 0xff0000);
 }
 
 void render_grid(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 00:34:26 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/21 23:35:39 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/22 18:17:11 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	collision(t_game *game, int *move)
 		move[1] = (move[1] / game->block[1] + 1) * game->block[1] + 1;
 	game->pos[0] = move[0];
 	game->pos[1] = move[1];
-	if (game->pos[0] < 0)
-		game->pos[0] = 0;
-	else if (game->pos[0] > WIN_W)
-		game->pos[0] = WIN_W;
-	if (game->pos[1] < 0)
-		game->pos[1] = 0;
-	else if (game->pos[1] > WIN_H)
-		game->pos[1] = WIN_H;
+	//if (game->pos[0] < 0)
+	//	game->pos[0] = 0;
+	//else if (game->pos[0] > WIN_W)
+	//	game->pos[0] = WIN_W;
+	//if (game->pos[1] < 0)
+	//	game->pos[1] = 0;
+	//else if (game->pos[1] > WIN_H)
+	//	game->pos[1] = WIN_H;
 }
 
 void	move_player(t_game *game)
@@ -86,10 +86,28 @@ void	move_player(t_game *game)
 	//}
 }
 
-//void	draw_top_down(t_game *game)
-//{
-	
-//}
+void	draw_top_down(t_game *game)
+{
+	char *p;
+	int x;
+	int y;
+
+	y = 0;
+	p = mlx_get_data_addr(game->img, &x, &x, &x);
+	while (y < WIN_H)
+	{
+		x = 0;
+		while (x < WIN_W)
+		{
+			if (y > game->split)
+				*(unsigned int *)(p + x * 4 + y * WIN_W * 4) = 0x232323;
+			else
+				*(unsigned int *)(p + x * 4 + y * WIN_W * 4) = 0xd4d4d4;
+			x++;
+		}
+		y++;
+	}
+}
 
 int render_loop(t_game *game)
 {
@@ -100,10 +118,11 @@ int render_loop(t_game *game)
 		// render_map2d(game);
 		// render_grid(game);
 		// draw_player(game);
-		render_mini_map(game);
+		//render_mini_map(game);
 		render_grid(game);
 		move_player(game);
 		draw_player(game);
+		draw_top_down(game);
 		draw_rays(game);
 		mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	}
