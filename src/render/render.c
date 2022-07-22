@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 00:34:26 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/22 12:02:18 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/22 14:47:09 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,12 +118,12 @@ int render_loop(t_game *game)
 		// render_map2d(game);
 		// render_grid(game);
 		// draw_player(game);
-		render_mini_map(game);
-		render_grid(game);
 		move_player(game);
-		draw_player(game);
 		draw_top_down(game);
 		draw_rays(game);
+		//render_mini_map(game);
+		//render_grid(game);
+		//draw_player(game);
 		mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	}
 	frame++;

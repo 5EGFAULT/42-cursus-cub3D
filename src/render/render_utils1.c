@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:22:35 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/22 13:00:31 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/22 14:51:54 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,20 @@ void cast_ray(t_game *game, double deg, int idx)
 		else
 			ccc = 0x3498DB; // south
 	}
+	//if (cos(deg) > 0)
+	//{
+	//	if (sin(deg) > 0)
+	//		ccc = 0xF1C40F; // east
+	//	else
+	//		ccc = 0x28B463; // west
+	//}
+	//else
+	//{
+	//	if (sin(deg) < 0)
+	//		ccc = 0xFF5733; // north
+	//	else
+	//		ccc = 0x3498DB; // south
+	//}
 	draw_line_v2(game, dxvec, pos, ccc);
 }
 
