@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:16:19 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/23 23:01:30 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/23 23:30:46 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,14 @@ void caster(t_game *game)
 		rayH[1] = (double)(-abs(inc[0] - game->pos[0]) * tan(game->dir)) + game->pos[1];
 	//else
 		//rayH[1] = inc[1];
-	printf("H:  %d\t%d\n", rayH[0], rayH[1]);
-	printf("V:  %d\t%d\n\n", rayV[0], rayV[1]);
-	printf("%f\t%f\n\n",sin(game->dir), cos(game->dir));
-	printf("%d\t%d\n\n",inc[0], inc[1]);
+	//printf("H:  %d\t%d\n", rayH[0], rayH[1]);
+	//printf("V:  %d\t%d\n\n", rayV[0], rayV[1]);
+	//printf("%f\t%f\n\n",sin(game->dir), cos(game->dir));
+	//printf("%d\t%d\n\n",inc[0], inc[1]);
 	inc[0] = game->pos[0] + cos(game->dir) * 1000;
 	inc[1] = game->pos[1] + sin(game->dir) * 1000;
 	draw_line_v2(game, rayH, game->pos, 0xFF0000);
 	draw_line_v2(game, rayV, game->pos, 0x000000);
 	draw_line_v2(game, inc, game->pos, 0x00FF00);
+	//printf("%.8f\n\n",game->dir);
 }
