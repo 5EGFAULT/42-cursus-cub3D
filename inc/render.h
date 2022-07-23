@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 23:50:03 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/21 22:11:01 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:20:30 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int		get_distance(int *p1, int *p2);
 void	render_rect(t_game *game, int color, int *begin, int *end);
 void	render_mini_map(t_game *game);
 void	draw_line_v2(t_game *game, int *begin, int *end, int color);
+void	caster(t_game *game);
 
 #endif

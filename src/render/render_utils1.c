@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:22:35 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/22 22:14:20 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:25:49 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void cast_ray(t_game *game, double deg, int idx)
 	dyvec[1] = game->pos[1];
 	if (cos(deg) > 0)
 		dxvec[0] = pos[0] + game->block[0];
-	if (cos(deg) < 0)
+	else if (cos(deg) < 0)
 		dxvec[0] = pos[0];
 	dxvec[1] = (dxvec[0] - game->pos[0]) * tan(deg) + game->pos[1];
 	if (sin(deg) > 0)
 		dyvec[1] = pos[1] + game->block[1];
-	if (sin(deg) < 0)
+	else if (sin(deg) < 0)
 		dyvec[1] = pos[1];
 	dyvec[0] = (dyvec[1] - game->pos[1]) / tan(deg) + game->pos[0];
 
@@ -51,7 +51,7 @@ void cast_ray(t_game *game, double deg, int idx)
 			break;
 		if (cos(deg) > 0)
 			dxvec[0] += game->block[0];
-		if (cos(deg) < 0)
+		else
 			dxvec[0] -= game->block[0];
 		dxvec[1] = (dxvec[0] - game->pos[0]) * tan(deg) + game->pos[1];
 	}
@@ -65,15 +65,16 @@ void cast_ray(t_game *game, double deg, int idx)
 			break;
 		if (sin(deg) > 0)
 			dyvec[1] += game->block[1];
-		if (sin(deg) < 0)
+		else
 			dyvec[1] -= game->block[1];
 		dyvec[0] = (dyvec[1] - game->pos[1]) / tan(deg) + game->pos[0];
 	}
-	int ccc = 0x12f212;
+	int ccc = 0;
 	if (get_distance(game->pos, dxvec) - get_distance(game->pos, dyvec) < 0)
 	{
 		dyvec[0] = dxvec[0];
 		dyvec[1] = dxvec[1];
+		ccc = 1;
 	}
 	//draw_line_v2(game, dyvec, game->pos, ccc);
 	//dyvec[0] = dyvec[0] / game->block[0];
@@ -82,6 +83,7 @@ void cast_ray(t_game *game, double deg, int idx)
 	//dxvec[1] = game->pos[1] / game->block[1];
 	// draw_line(game, dyvec,game->pos, 0x00FF00);
 	double lh = get_distance(game->pos, dyvec) * cos(game->dir - deg);
+		//lh =  (1 / lh) * ((WIN_W /2) * tan(M_PI / 3));
 		lh =  (game->block[1] / lh) * ((WIN_W /2) * tan(M_PI / 3));
 	dxvec[1] = game->split - lh / 2;
 	dxvec[0] = idx;
@@ -106,17 +108,47 @@ void cast_ray(t_game *game, double deg, int idx)
 	//	else
 	//		ccc = 0x3498DB; // south
 	//}
-	double val = sin(M_PI / 4);
-	if(sin(deg) > val)
-		ccc = 0xF1C40F; // north
-	else if(sin(deg) < -val)
-		ccc = 0x28B463; // south
-	else if(cos(deg) > val)
-		ccc = 0xFF5733; // east
+	//double val = sin(M_PI / 4);
+	//if(sin(deg) > val)
+	//	ccc = 0xF1C40F; // north
+	//else if(sin(deg) < -val)
+	//	ccc = 0x28B463; // south
+	//else if(cos(deg) > val)
+	//	ccc = 0xFF5733; // east
+	//else
+	//	ccc = 0x3498DB; // west
+	double ppos[2];
+	ppos[0] = dyvec[0] / game->block[0];
+	ppos[1] = dyvec[1] / game->block[1];
+	if(ccc == 1)
+	{
+		printf("%f\t%d\n", ppos[0] * game->block[0], dyvec[0]);	
+		if (ppos[0] * game->block[0] + game->block[0] / 2 > dyvec[0])
+			ccc = 0xF1C40F; // east
+		else
+			ccc = 0x28B463; // west
+	}
 	else
-		ccc = 0x3498DB; // west
-
-	draw_line_v2(game, dxvec, pos, ccc);
+	{
+		printf("%f\t%d\n", ppos[1] * game->block[1] , dyvec[1]);	
+		if (ppos[1] * game->block[1] + game->block[1] / 2 > dyvec[1])
+			ccc = 0xFF5733; // east
+		else
+			ccc = 0x3498DB; // west
+	}
+	//ppos[0] = ppos[0] * game->block[0] - game->block[0] / 2;
+	//ppos[1] = ppos[1] * game->block[1] - game->block[1] / 2; 
+	//if(ccc == 1 &&  dyvec[1] < ppos[1])
+	//	ccc = 0xF1C40F; // north
+	//else if(ccc == 1 && dyvec[1] >= ppos[1])
+	//	ccc = 0x28B463; // south
+	//else if(dyvec[0] > ppos[0])
+	//	ccc = 0xFF5733; // east
+	//else
+	//	ccc = 0x3498DB; // west
+	////ccc = 0xF1C40F;
+	//draw_line_v2(game, dxvec, pos, ccc);
+	draw_line_v2(game, dyvec,game->pos, ccc);
 }
 
 // void	cast_ray(t_game *game, double deg)
@@ -152,9 +184,11 @@ void draw_rays(t_game *game)
 	// printf("%f\n", inc);
 	deg = game->dir - M_PI / 6;
 	idx = 0;
+	cast_ray(game, game->dir, idx);
+	
 	while (deg <= game->dir + M_PI / 6)
 	{
-		cast_ray(game, deg, idx);
+		//cast_ray(game, deg, idx);
 		deg += inc;
 		idx++;
 	}

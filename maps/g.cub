@@ -1,13 +1,13 @@
-NO    ./path_to _the_north_texture
-SO     ./path_to_the_south_texture
+NO    ./assets/path_to _the_north_texture
+SO     ./assets/path_to_the_south_texture
 
 
 
-WE	./path_to_the_west _texture
+WE	./assets/path_to_the_west _texture
 
 
 
-EA ./path_to_the_west_texture
+EA ./assets/path_to_the_west_texture
 F 163, 204, 190
 
 C	  131, 153, 168
