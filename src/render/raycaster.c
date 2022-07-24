@@ -6,12 +6,32 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:16:19 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/24 18:13:55 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/24 21:40:30 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/render.h"
 
+
+void	extend_ray_y(t_game *game, double ang, double *ray)
+{
+	double	inc[2];
+	//pos[0] = floor(game->pos[0] / game->block[0]) * game->block[0];
+	//pos[1] = floor(game->pos[1] / game->block[1]) * game->block[1];
+	if (sin(ang) > 0)
+		inc[1] = game->block[1];
+	else
+		inc[1] = -game->block[0];
+	if (cos(ang) > 0)
+		inc[0] = game->block[0];
+	else
+		inc[0] = -game->block[0];
+
+	ray[1] += inc[1];
+	//ray[0] = (ray[1] - game->pos[1]) / tan(ang) + game->pos[0];
+	ray[0] += inc[1] / sin(ang);
+	(void)ray;
+}
 
 double	*cast_y(t_game *game, double ang)
 {
@@ -37,11 +57,15 @@ double	*cast_y(t_game *game, double ang)
 		ray[0] = fabs(inc[1] - game->pos[1]) / tan(ang) + game->pos[0];
 	else
 		ray[0] = -fabs(inc[1] - game->pos[1]) / tan(ang) + game->pos[0];
+	extend_ray_y(game, ang, ray);
 	pos[0] = (int)game->pos[0];
 	pos[1] = (int)game->pos[1];
 	inc[0] = (int)ray[0];
 	inc[1] = (int)ray[1];
+	if(sin(ang) > 0)
 	draw_line_v2(game, inc, pos, 0xFF0000);
+		else
+	draw_line_v2(game, inc, pos, 0xFFFF00);
 	return (ray);
 }
 double	*cast_x(t_game *game, double ang)
@@ -72,7 +96,10 @@ double	*cast_x(t_game *game, double ang)
 	pos[1] = (int)game->pos[1];
 	inc[0] = (int)ray[0];
 	inc[1] = (int)ray[1];
-	draw_line_v2(game, inc, pos, 0x0000FF);
+	if(cos(ang) > 0)
+		draw_line_v2(game, inc, pos, 0x000000);
+	else
+		draw_line_v2(game, inc, pos, 0x0000FF);
 	return (ray);
 }
 
@@ -133,10 +160,10 @@ void caster(t_game *game)
 	pos[1] = (int)game->pos[1];
 	//draw_line_v2(game, rayH, pos, 0xFF0000);
 	//draw_line_v2(game, rayV, pos, 0x000000);
-	//draw_line_v2(game, inc, pos, 0x00FF00);
+	draw_line_v2(game, inc, pos, 0x00FF00);
 	// printf("%.8f\n\n",game->dir);
 	double *rayH = cast_y(game, game->dir);
 	(void)rayH;
-	double *rayV = cast_x(game, game->dir);
-	(void)rayV;
+	//double *rayV = cast_x(game, game->dir);
+	//(void)rayV;
 }
