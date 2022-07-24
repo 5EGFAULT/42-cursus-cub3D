@@ -6,22 +6,22 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 00:34:26 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/23 18:17:35 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/24 18:01:20 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/render.h"
 
-void	collision(t_game *game, int *move)
+void	collision(t_game *game, double *move)
 {
-	if (game->pos[0] < move[0] && game->map[game->pos[1] / game->block[1]][move[0] / game->block[0]] != '0')
-		move[0] = (move[0] / game->block[0]) * game->block[0] - 1;
-	else if (game->map[game->pos[1] / game->block[1]][move[0] / game->block[0]] != '0')
-		move[0] = (move[0] / game->block[0] + 1) * game->block[0] + 1;
-	if (game->pos[1] < move[1] && game->map[move[1] / game->block[1]][game->pos[0] / game->block[0]] != '0')
-		move[1] = (move[1] / game->block[1]) * game->block[1] - 1;
-	else if (game->map[move[1] / game->block[1]][game->pos[0] / game->block[0]] != '0')
-		move[1] = (move[1] / game->block[1] + 1) * game->block[1] + 1;
+	if (game->pos[0] < move[0] && game->map[(int)(game->pos[1] / game->block[1])][(int)(move[0] / game->block[0])] != '0')
+		move[0] = (int)(move[0] / game->block[0]) * game->block[0] - 1;
+	else if (game->map[(int)(game->pos[1] / game->block[1])][(int)(move[0] / game->block[0])] != '0')
+		move[0] = (int)(move[0] / game->block[0] + 1) * game->block[0] + 1;
+	if (game->pos[1] < move[1] && game->map[(int)move[1] / game->block[1]][(int)(game->pos[0] / game->block[0])] != '0')
+		move[1] = (int)(move[1] / game->block[1]) * game->block[1] - 1;
+	else if (game->map[(int)move[1] / game->block[1]][(int)(game->pos[0] / game->block[0])] != '0')
+		move[1] = (int)(move[1] / game->block[1] + 1) * game->block[1] + 1;
 	game->pos[0] = move[0];
 	game->pos[1] = move[1];
 	//if (game->pos[0] < 0)
@@ -36,54 +36,38 @@ void	collision(t_game *game, int *move)
 
 void	move_player(t_game *game)
 {
-	int reverse;
-	int move[2];
+	int		reverse;
+	double	move[2];
 
 	reverse = game->move;
 	game->dir += game->rotate * ROTATE_SPEED;
+	if(game->dir < -M_PI  * 2)
+		game->dir += M_PI  * 2;
+	else if(game->dir > M_PI  * 2)
+		game->dir -= M_PI  * 2;
 	move[0] = game->pos[0];
 	move[1] = game->pos[1];
 	if (game->move == 1 || game->move == -1)
 	{
-		if (game->move == 1)
-			reverse = 0;
-		move[0] += MOVE_SPEED * (cos(game->dir + M_PI * reverse));
-		move[1] += MOVE_SPEED * (sin(game->dir + M_PI * reverse));
+		//if (game->move == 1)
+		//	reverse = 0;
+		move[0] += MOVE_SPEED * (cos(game->dir) * reverse);
+		move[1] += MOVE_SPEED * (sin(game->dir) * reverse);
+		//printf("TD=\t%f\t%f\t%f\n",game->dir ,MOVE_SPEED *cos(game->dir ) * reverse,MOVE_SPEED * sin(game->dir ) * reverse);
+		//// print move and game->pos to check if it's working
+		//printf("move=\t%d\t%d\n",move[0],move[1]);
+		//printf("pos=\t%d\t%d\n\n",game->pos[0],game->pos[1]);
 	}
 	else if (game->move == 2 || game->move == -2)
 	{
 		reverse /= 2;
 		move[0] += MOVE_SPEED * (cos(game->dir + M_PI_2 * reverse));
 		move[1] += MOVE_SPEED * (sin(game->dir + M_PI_2 * reverse));
+		//printf("LR=\t%f\t%f\t%f\n",game->dir + M_PI_2 * reverse,MOVE_SPEED *cos(game->dir+ M_PI_2 * reverse),MOVE_SPEED * sin(game->dir+ M_PI_2 * reverse));
+		//printf("move=\t%d\t%d\n",move[0],move[1]);
+		//printf("pos=\t%d\t%d\n\n",game->pos[0],game->pos[1]);
 	}
-	if (move[0] / game->block[0] == game->pos[0] / game->block[0] &&
-		move[1] / game->block[1] == game->pos[1] / game->block[1])
-	{
-		game->pos[0] = move[0];
-		game->pos[1] = move[1];
-	}
-	else
-	{
-		// game->pos[0] = move[0];
-		// game->pos[1] = move[1];
-		collision(game, move);
-		// if (game->move == 1 || game->move == -1)
-		//	check_collision_raycast_move(game, game->dir + M_PI * reverse, move);
-		// else if (game->move == 2 || game->move == -2)
-		//	check_collision_raycast_move(game, game->dir + M_PI_2 * reverse, move);
-	}
-	// if (move[0] / game->block[0] < game->map_width && move[0] / game->block[0] > -1 &&
-	//	move[1] / game->block[1] < game->map_height && move[1] / game->block[1] > -1 &&
-	//	game->map[move[1] / game->block[1]][move[0] / game->block[0]] == '0')
-	//{
-	//	game->pos[0] = move[0];
-	//	game->pos[1] = move[1];
-	// }
-	// if (game->map[move[1]/ game->block[1]][move[0]/ game->block[0]] == '0')
-	//{
-	// game->pos[0] = move[0];
-	// game->pos[1] = move[1];
-	//}
+	collision(game, move);
 }
 
 void	draw_top_down(t_game *game)

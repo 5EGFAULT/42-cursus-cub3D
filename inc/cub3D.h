@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:42:54 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/22 14:39:44 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:46:20 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@
 //# define ROTATE_SPEED 0.02
 //# define MOVE_SPEED 20
 //# define MOVE_SPEED 2
-# define ROTATE_SPEED 0.1
+# define ROTATE_SPEED 0.02
+//# define ROTATE_SPEED M_PI / 4
 # define MOVE_SPEED 5
 
 typedef struct s_cub
@@ -67,7 +68,7 @@ typedef struct s_game
 	char	**map;
 	int		map_height;
 	int		map_width;
-	int		pos[2];
+	double	pos[2];
 	int		split;
 	double	dir;
 	int		block[2];
@@ -76,3 +77,32 @@ typedef struct s_game
 }t_game;
 
 #endif
+/**
+TD=     0.000000        5.000000        0.000000
+move=   411     96
+pos=    406     96
+
+
+
+TD=     -3.143185       -4.999994       0.007963
+move=   291     96
+pos=    296     96
+
+
+TD=     -0.001593       4.999994        -0.007963
+move=   379     74
+pos=    375     75
+
+TD=     -6.303185       4.999000        -0.099993
+move=   309     64
+pos=    305     65
+*/
+
+/**
+
+TD=     -6.280000       4.999975        0.015927
+move=   1592    286
+pos=    1588    286
+
+ * 
+ */

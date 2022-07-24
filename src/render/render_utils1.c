@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:22:35 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/23 18:25:49 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:52:17 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ void cast_ray(t_game *game, double deg, int idx)
 		dyvec[0] = (dyvec[1] - game->pos[1]) / tan(deg) + game->pos[0];
 	}
 	int ccc = 0;
-	if (get_distance(game->pos, dxvec) - get_distance(game->pos, dyvec) < 0)
+pos[1] = (int)game->pos[1];
+pos[0] = (int)game->pos[0];
+	if (get_distance(pos, dxvec) - get_distance(pos, dyvec) < 0)
 	{
 		dyvec[0] = dxvec[0];
 		dyvec[1] = dxvec[1];
@@ -82,7 +84,7 @@ void cast_ray(t_game *game, double deg, int idx)
 	//dxvec[0] = game->pos[0] / game->block[0];
 	//dxvec[1] = game->pos[1] / game->block[1];
 	// draw_line(game, dyvec,game->pos, 0x00FF00);
-	double lh = get_distance(game->pos, dyvec) * cos(game->dir - deg);
+	double lh = get_distance(pos, dyvec) * cos(game->dir - deg);
 		//lh =  (1 / lh) * ((WIN_W /2) * tan(M_PI / 3));
 		lh =  (game->block[1] / lh) * ((WIN_W /2) * tan(M_PI / 3));
 	dxvec[1] = game->split - lh / 2;
@@ -148,7 +150,9 @@ void cast_ray(t_game *game, double deg, int idx)
 	//	ccc = 0x3498DB; // west
 	////ccc = 0xF1C40F;
 	//draw_line_v2(game, dxvec, pos, ccc);
-	draw_line_v2(game, dyvec,game->pos, ccc);
+pos[1] = (int)game->pos[1];
+pos[0] = (int)game->pos[0];
+	draw_line_v2(game, dyvec, pos, ccc);
 }
 
 // void	cast_ray(t_game *game, double deg)
