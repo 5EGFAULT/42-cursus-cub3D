@@ -31,3 +31,5 @@
 
 # TO Read
  - Bresenham's line algorithm.
+
+ [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=5EGFAULT&layout=compact&langs_count=10&hide=css,scss,php,html,hack&theme=dark)](https://github.com/5egfault)
