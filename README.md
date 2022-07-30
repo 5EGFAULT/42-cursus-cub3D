@@ -8,7 +8,7 @@
 
   - [x] - Parse map and the configfile
   - [x] - Create a 2D game
-  - [ ] - Untextured Raycaster
+  - [x] - Untextured Raycaster
   - [ ] - Textured Raycaster
   - [ ] - Floor and Ceiling
   - [ ] - Scaling Sprites
@@ -22,7 +22,7 @@
   - [x] - cast rays around player then from player direction -30deg +30deg
   - [x] - start ray casting and stopping at next line
   - [x] - start ray casting and stopping at a a wall
-  - [ ] - stop going into walls collision
+  - [x] - stop going into walls collision
   - [ ] - use antialiasing to sharpen the drawing
   - [ ] - improve rendring strategy to be faster and more performent
 
@@ -31,5 +31,3 @@
 
 # TO Read
  - Bresenham's line algorithm.
-
- [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=5EGFAULT&layout=compact&langs_count=10&hide=css,scss,php,html,hack&theme=dark)](https://github.com/5egfault)

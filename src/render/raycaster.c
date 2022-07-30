@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:16:19 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/30 05:37:59 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/30 06:17:58 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,9 +184,10 @@ void render_rays(t_ray *rays, t_game *game)
 			color = 0x000000;
 		rays[i].dist = fget_dist(game->pos, rays[i].ray) * cos(fabs(rays[i].ang - game->dir));
 		top[0] = i;
-		top[1] = game->split - ((WIN_H   * 64)/ rays[i].dist);
+		// this 64 can be replaced by the hight dezired for the wall
+		top[1] = game->split - ((WIN_H   * (64))/ rays[i].dist);
 		down[0] = i;
-		down[1] = game->split + ((WIN_H  * 64)/ rays[i].dist);
+		down[1] = game->split + ((WIN_H  * (64))/ rays[i].dist);
 		//draw_line_v2(game, ray, pos, color);
 		draw_line_v2(game, top, down, color);
 		i++;
