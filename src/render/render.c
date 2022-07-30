@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 00:34:26 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/30 05:40:39 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/30 05:54:55 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,14 @@ void	draw_top_down(t_game *game)
 		x = 0;
 		while (x < WIN_W)
 		{
+			//if (y > game->split)
+			//	*(unsigned int *)(p + x * 4 + y * WIN_W * 4) = 0x232323;
+			//else
+			//	*(unsigned int *)(p + x * 4 + y * WIN_W * 4) = 0xd4d4d4;
 			if (y > game->split)
-				*(unsigned int *)(p + x * 4 + y * WIN_W * 4) = 0x232323;
+				*(unsigned int *)(p + x * 4 + y * WIN_W * 4) = game->f;
 			else
-				*(unsigned int *)(p + x * 4 + y * WIN_W * 4) = 0xd4d4d4;
+				*(unsigned int *)(p + x * 4 + y * WIN_W * 4) = game->c;
 			x++;
 		}
 		y++;
