@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:22:35 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/24 16:52:17 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/30 03:21:40 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ void draw_rays(t_game *game)
 	// printf("%f\n", inc);
 	deg = game->dir - M_PI / 6;
 	idx = 0;
-	cast_ray(game, game->dir, idx);
+	//cast_ray(game, game->dir, idx);
 	
 	while (deg <= game->dir + M_PI / 6)
 	{

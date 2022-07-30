@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:16:19 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/27 23:45:05 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/30 03:43:48 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void extend_ray_y(t_game *game, double ang, double *ray)
 {
 	double inc[2];
-	// pos[0] = floor(game->pos[0] / game->block[0]) * game->block[0];
-	// pos[1] = floor(game->pos[1] / game->block[1]) * game->block[1];
 	if (sin(ang) > 0)
 	{
 		inc[1] = game->block[0];
@@ -27,9 +25,6 @@ void extend_ray_y(t_game *game, double ang, double *ray)
 		inc[1] = -game->block[0];
 		inc[0] = -game->block[1] / tan(ang);
 	}
-	// print (int)ray[1] / 64 and (int)ray[0] / 64
-	// printf("%d\t%d\n", (int)(ray[1] / 64), (int)(ray[0] / 64));
-	// printf("%d\t%d\n", game->map_height, game->map_width);
 	while (ray[1] < game->map_height * game->block[1] &&
 		   ray[0] < game->map_width * game->block[0] &&
 		   ray[1] > 0 && ray[0] > 0 &&
@@ -37,14 +32,11 @@ void extend_ray_y(t_game *game, double ang, double *ray)
 	{
 		ray[1] += inc[1];
 		ray[0] += inc[0];
-		// printf("%d\t%d\n", (int)(ray[1] / 64), (int)(ray[0] / 64));
 	}
 }
 void extend_ray_x(t_game *game, double ang, double *ray)
 {
 	double inc[2];
-	// pos[0] = floor(game->pos[0] / game->block[0]) * game->block[0];
-	// pos[1] = floor(game->pos[1] / game->block[1]) * game->block[1];
 	if (cos(ang) > 0)
 	{
 		inc[0] = game->block[1];
@@ -55,17 +47,12 @@ void extend_ray_x(t_game *game, double ang, double *ray)
 		inc[0] = -game->block[1];
 		inc[1] = -game->block[0] * tan(ang);
 	}
-	// print cos ang and sin ang 
-	printf("%f\t%f\n", cos(ang), sin(ang));
-	printf("%f\t%f\n", ray[0], ray[1]);
 	ray[1] += inc[1];
 	ray[0] += inc[0];
-
-	printf("%f\t%f\n\n", ray[0], ray[1]);
-	 while (ray[1] < game->map_height * game->block[1] && \
-	ray[0] < game->map_width * game->block[0] && \
-	ray[1] > 0 && ray[0] > 0 && \
-	game->map[(int)(ray[1] / 64)][(int)(ray[0] / 64)] == '0')
+	while (ray[1] < game->map_height * game->block[1] &&
+		   ray[0] < game->map_width * game->block[0] &&
+		   ray[1] > 0 && ray[0] > 0 &&
+		   game->map[(int)(ray[1] / 64)][(int)(ray[0] / 64)] == '0')
 	{
 		ray[1] += inc[1];
 		ray[0] += inc[0];
@@ -120,7 +107,7 @@ double *cast_x(t_game *game, double ang)
 	if (sin(ang) > 0)
 		inc[1] = pos[1] + game->block[1];
 	else
-		inc[1] = pos[1];
+		inc[1] = pos[1] - 1;
 	if (cos(ang) > 0)
 		inc[0] = pos[0] + game->block[0];
 	else
@@ -142,66 +129,182 @@ double *cast_x(t_game *game, double ang)
 	return (ray);
 }
 
-void caster(t_game *game)
+void	init_increments(double *inch, double *incv, t_ray *ray, t_game *game)
 {
-	// int rayH[2];
-	// int rayV[2];
-	int pos[2];
-	int inc[2];
-	// printf("{%d}{%f}\n",game->pos[0],((float)game->pos[0]/(float)game->block[0]));
-	// rayH[0] = game->pos[0] + game->block[0];
-	// rayH[1] = (rayH[0] - (game->pos[0]/game->block[0])*game->block[0]) * tan(game->dir) + game->pos[1];
+	if (sin(ray->ang) > 0)
+	{
+		inch[1] = game->block[0];
+		inch[0] = game->block[1] / tan(ray->ang);
+	}
+	else
+	{
+		inch[1] = -game->block[0];
+		inch[0] = -game->block[1] / tan(ray->ang);
+	}
+	if (cos(ray->ang) > 0)
+	{
+		incv[0] = game->block[1];
+		incv[1] = game->block[0] * tan(ray->ang);
+	}
+	else
+	{
+		incv[0] = -game->block[1];
+		incv[1] = -game->block[0] * tan(ray->ang);
+	}
+}
+double fget_dist(double *p1, double *p2)
+{
+	return (sqrt(pow(p1[0] - p2[0], 2) + pow(p1[1] - p2[1], 2)));
+}
 
-	// rayV[1] = game->pos[1] + game->block[1];
-	// rayV[0] = (rayV[1] - game->pos[1]) * tan(game->dir) + game->pos[0];
-	// pos[0] = floor(game->pos[0] / game->block[0]) * game->block[0];
-	// pos[1] = floor(game->pos[1] / game->block[1]) * game->block[1];
+short	is_wall(t_game *game, double *rayh, double *rayv, short inc_v)
+{
+	if (inc_v)
+	{
+		if (rayv[1] >= game->map_height * game->block[1] || \
+			rayv[0] >= game->map_width * game->block[0] || \
+			rayv[1] < 0 || rayv[0] < 0)
+			return (0);
+		if (game->map[(int)(rayv[1] / \
+		game->block[1])][(int)(rayv[0] / game->block[0])] != '0')
+			return (0);
+		return (1);
+	}
+	if (rayh[1] >= game->map_height * game->block[1] || \
+		rayh[0] >= game->map_width * game->block[0] || \
+		rayh[1] < 0 || rayh[0] < 0)
+		return (0);
+	if (game->map[(int)(rayh[1] / \
+	game->block[1])][(int)(rayh[0] / game->block[0])] != '0')
+		return (0);
+	return (1);
+}
 
-	// if (sin(game->dir) > 0)
-	//	inc[1] = pos[1] + game->block[1];
-	// else
-	//	inc[1] = pos[1];
-	// if (cos(game->dir) > 0)
-	//	inc[0] = pos[0] + game->block[0];
-	// else
-	//	inc[0] = pos[0];
+void	set_ray(short inc_v, t_ray *ray, double *rayh, double *rayv)
+{
+	if (inc_v)
+	{
+		ray->ray[0] = rayv[0];
+		ray->ray[1] = rayv[1];
+		ray->e_side = W;
+		if (cos(ray->ang) > 0)
+			ray->e_side = E;
+	}
+	else
+	{
+		ray->ray[0] = rayh[0];
+		ray->ray[1] = rayh[1];
+		ray->e_side = N;
+		if (sin(ray->ang) > 0)
+			ray->e_side = S;
+	}
+}
 
-	// rayV[1] = inc[1];
-	// rayH[0] = inc[0];
+void	extend_ray(t_game *game, t_ray *ray, double *rayh, double *rayv)
+{
+	double		inch[2];
+	double		incv[2];
+	short		inc_v;
 
-	// if (sin(game->dir) > 0)
-	//	rayV[0] = fabs(inc[1] - game->pos[1]) / tan(game->dir) + game->pos[0];
-	// else if (sin(game->dir) < 0)
-	//	rayV[0] = -fabs(inc[1] - game->pos[1]) / tan(game->dir) + game->pos[0];
-	// else
-	//	rayV[0] = WIN_W;
-	// if (cos(game->dir) > 0)
-	//	rayH[1] = (double)(fabs(inc[0] - game->pos[0]) * tan(game->dir)) + game->pos[1];
-	// else if (cos(game->dir) < 0)
-	//	rayH[1] = (double)(-fabs(inc[0] - game->pos[0]) * tan(game->dir)) + game->pos[1];
-	// else
-	//	rayH[1] = WIN_H;
-	//// printf("H:  %d\t%d\n", rayH[0], rayH[1]);
-	//// printf("V:  %d\t%d\n\n", rayV[0], rayV[1]);
-	//// printf("%f\t%f\n\n",sin(game->dir), cos(game->dir));
-	//// printf("%d\t%d\n\n",inc[0], inc[1]);
-	////if(cos(game->dir) == 0)
-	//	//printf("cos(%f) == %f\n", game->dir, cos(game->dir));
-	////else if(sin(game->dir) == 0)
-	//	//printf("sin(%f) == %f\n\n", game->dir, sin(game->dir));
-	////printf("%f\t%f\n\n",cos(game->dir) * 64, sin(game->dir) * 64);
-	////else
-	//	//printf("none cos(%Lf) == %f\tsin(%Lf) == %.f\n", game->dir, cos(game->dir)*64, game->dir, sin(game->dir)*64);
-	inc[0] = game->pos[0] + cos(game->dir) * 128;
-	inc[1] = game->pos[1] + sin(game->dir) * 128;
+	inc_v = 0;
+	if (fget_dist(game->pos, rayv) < fget_dist(game->pos, rayh))
+		inc_v = 1;
+	init_increments(inch, incv, ray, game);
+	while (is_wall(game, rayh, rayv, inc_v))
+	{
+		if (inc_v)
+		{
+			rayv[1] += incv[1];
+			rayv[0] += incv[0];
+		}
+		else
+		{
+			rayh[1] += inch[1];
+			rayh[0] += inch[0];
+		}
+		inc_v = 0;
+		if (fget_dist(game->pos, rayv) < fget_dist(game->pos, rayh))
+			inc_v = 1;
+	}
+	set_ray(inc_v, ray, rayh, rayv);
+}
+
+void	cast_one(t_game *game, int *pos, t_ray *ray)
+{
+	double	rayh[2];
+	double	rayv[2];
+	int		inc[2];
+
+	if (sin(ray->ang) > 0)
+		inc[1] = pos[1] + game->block[1];
+	else
+		inc[1] = pos[1] - 1;
+	if (cos(ray->ang) > 0)
+		inc[0] = pos[0] + game->block[0];
+	else
+		inc[0] = pos[0] - 1;
+	rayh[1] = inc[1];
+	rayv[0] = inc[0];
+	if (sin(ray->ang) > 0)
+		rayh[0] = fabs(inc[1] - game->pos[1]) / tan(ray->ang) + game->pos[0];
+	else
+		rayh[0] = -fabs(inc[1] - game->pos[1]) / tan(ray->ang) + game->pos[0];
+	if (cos(ray->ang) > 0)
+		rayv[1] = fabs(inc[0] - game->pos[0]) * tan(ray->ang) + game->pos[1];
+	else
+		rayv[1] = -fabs(inc[0] - game->pos[0]) * tan(ray->ang) + game->pos[1];
+	extend_ray(game, ray, rayh, rayv);
+}
+
+void	render_rays(t_ray *rays, t_game *game)
+{
+	int		i;
+	int		color;
+	int		pos[2];
+	int		ray[2];
+
 	pos[0] = (int)game->pos[0];
 	pos[1] = (int)game->pos[1];
-	// draw_line_v2(game, rayH, pos, 0xFF0000);
-	// draw_line_v2(game, rayV, pos, 0x000000);
-	draw_line_v2(game, inc, pos, 0x00FF00);
-	// printf("%.8f\n\n",game->dir);
-	// double *rayH = cast_y(game, game->dir);
-	//(void)rayH;
-	double *rayV = cast_x(game, game->dir);
-	(void)rayV;
+	i = 0;
+	while (i <= WIN_W)
+	{
+		ray[0] = (int)rays[i].ray[0];
+		ray[1] = (int)rays[i].ray[1];
+		if (rays[i].e_side == N)
+			color = 0x0000FF;
+		else if (rays[i].e_side == S)
+			color = 0xFF0000;
+		else if (rays[i].e_side == E)
+			color = 0x00FF00;
+		else if (rays[i].e_side == W)
+			color = 0x000000;
+		draw_line_v2(game, ray, pos, color);
+		i++;
+	}
+}
+
+void caster(t_game *game)
+{
+	t_ray	*ray;
+	double	deg;
+	double	inc;
+	int		pos[2];
+	int		idx;
+
+	inc = (M_PI / 3) / WIN_W;
+	ray = (t_ray *)malloc(sizeof(t_ray) * (WIN_W + 1));
+	if (!ray)
+		exit(EXIT_FAILURE);
+	pos[0] = floor(game->pos[0] / game->block[0]) * game->block[0];
+	pos[1] = floor(game->pos[1] / game->block[1]) * game->block[1];
+	deg = game->dir - M_PI / 6;
+	idx = 0;
+	while (deg <= game->dir + M_PI / 6)
+	{
+		ray[idx].ang = deg;
+		cast_one(game, pos, &ray[idx]);
+		deg += inc;
+		idx++;
+	}
+	render_rays(ray, game);
 }
