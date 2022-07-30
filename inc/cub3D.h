@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:42:54 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/30 03:23:23 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/30 05:38:32 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@
 //# define ROTATE_SPEED 0.02
 //# define MOVE_SPEED 20
 //# define MOVE_SPEED 2
-# define ROTATE_SPEED 0.02
+//# define ROTATE_SPEED 0.02
 //# define ROTATE_SPEED M_PI / 4
-# define MOVE_SPEED 5
+//# define MOVE_SPEED 5
+# define ROTATE_SPEED 0.05
+# define MOVE_SPEED 10
 
 typedef struct s_cub
 {
