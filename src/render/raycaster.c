@@ -6,7 +6,7 @@
 /*   By: asouinia <asouinia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:16:19 by asouinia          #+#    #+#             */
-/*   Updated: 2022/07/30 06:17:58 by asouinia         ###   ########.fr       */
+/*   Updated: 2022/07/31 01:28:08 by asouinia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,20 +175,27 @@ void render_rays(t_ray *rays, t_game *game)
 		ray[0] = (int)rays[i].ray[0];
 		ray[1] = (int)rays[i].ray[1];
 		if (rays[i].e_side == N)
-			color = 0x0000FF;
+			color = 0xf4ecc2;
 		else if (rays[i].e_side == S)
-			color = 0xFF0000;
+			color = 0xead795;
 		else if (rays[i].e_side == E)
-			color = 0x00FF00;
+			color = 0xe9c2a1;
 		else if (rays[i].e_side == W)
-			color = 0x000000;
+			color = 0xfdee73;
 		rays[i].dist = fget_dist(game->pos, rays[i].ray) * cos(fabs(rays[i].ang - game->dir));
+		double h;
+		//h = 64 / (rays[i].dist * 277);
+		h = WIN_H - (rays[i].dist / WIN_H);
 		top[0] = i;
 		// this 64 can be replaced by the hight dezired for the wall
-		top[1] = game->split - ((WIN_H   * (64))/ rays[i].dist);
+		top[1] = game->split - h;
+		top[1] = game->split - ((WIN_W * (32)) / rays[i].dist);
+		//top[1] = game->split - ((WIN_H * (64)) / rays[i].dist);
 		down[0] = i;
-		down[1] = game->split + ((WIN_H  * (64))/ rays[i].dist);
-		//draw_line_v2(game, ray, pos, color);
+		down[1] = game->split + h;
+		down[1] = game->split + ((WIN_W * (32)) / rays[i].dist);
+		//down[1] = game->split + ((WIN_H * (64)) / rays[i].dist);
+		// draw_line_v2(game, ray, pos, color);
 		draw_line_v2(game, top, down, color);
 		i++;
 	}

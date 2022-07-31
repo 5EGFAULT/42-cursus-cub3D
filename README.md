@@ -31,3 +31,5 @@
 
 # TO Read
  - Bresenham's line algorithm.
+ - DDA line algorithm.
+ - 
